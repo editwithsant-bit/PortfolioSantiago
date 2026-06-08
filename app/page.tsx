@@ -15,6 +15,9 @@ import {
   Zap
 } from "lucide-react";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const assetPath = (path: string) => `${basePath}${path}`;
+
 const featuredVideos = [
   {
     title: "Kodak: O Futuro que Destruiu um Império",
@@ -684,7 +687,7 @@ function Hero() {
           />
           <div className="absolute inset-[8%] z-30 overflow-hidden rounded-full border border-white/15 bg-[#03040b] shadow-glass">
             <Image
-              src="/profile-photo.png"
+              src={assetPath("/profile-photo.png")}
               alt="SANTIAGO profile visual"
               fill
               priority

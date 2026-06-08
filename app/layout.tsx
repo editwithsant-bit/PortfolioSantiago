@@ -2,9 +2,17 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const withBasePath = (path: string) => `${basePath}${path}`;
+const normalizedSiteUrl = siteUrl.replace(/\/$/, "");
+const metadataAssetBase =
+  basePath && !normalizedSiteUrl.endsWith(basePath)
+    ? `${normalizedSiteUrl}${basePath}`
+    : normalizedSiteUrl;
+const metadataAsset = (path: string) => `${metadataAssetBase}${path}`;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(metadataAssetBase),
   title: "SANTIAGO | Professional Video Editor",
   description:
     "Premium portfolio for SANTIAGO, a professional video editor helping creators turn attention into growth through YouTube, Shorts, Reels, and high-retention storytelling.",
@@ -23,10 +31,10 @@ export const metadata: Metadata = {
     description:
       "Professional video editor specialized in YouTube content, Shorts, Reels, and high-retention storytelling.",
     type: "website",
-    images: ["/og.svg"]
+    images: [metadataAsset("/og.svg")]
   },
   icons: {
-    icon: "/favicon.svg"
+    icon: withBasePath("/favicon.svg")
   }
 };
 
