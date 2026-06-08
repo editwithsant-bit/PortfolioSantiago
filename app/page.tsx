@@ -72,23 +72,7 @@ const shortVideos = [
   }
 ];
 
-const services = [
-  {
-    title: "YouTube Editing",
-    points: ["Storytelling", "Retention focused", "SFX"],
-    icon: Clapperboard
-  },
-  {
-    title: "Short Form Content",
-    points: ["Shorts", "Reels", "TikTok"],
-    icon: Play
-  },
-  {
-    title: "Content Optimization",
-    points: ["Hooks", "Pacing", "Audience retention"],
-    icon: Zap
-  }
-];
+const serviceIcons = [Clapperboard, Play, Zap];
 
 const contacts = [
   {
@@ -110,6 +94,163 @@ const contacts = [
     icon: Mail
   }
 ];
+
+type Language = "en" | "pt";
+
+const translations = {
+  en: {
+    language: {
+      english: "English",
+      portuguese: "Português",
+      selectorLabel: "Change site language"
+    },
+    nav: [
+      { label: "About", href: "#about" },
+      { label: "Videos", href: "#work" },
+      { label: "Shorts", href: "#shorts" },
+      { label: "Services", href: "#services" },
+      { label: "Contact", href: "#contact" }
+    ],
+    audio: {
+      label: "Music",
+      on: "Turn music on",
+      off: "Turn music off",
+      volume: "Music volume"
+    },
+    hero: {
+      title: "Helping Creators Turn Attention Into Growth",
+      description:
+        "Professional Video Editor specialized in YouTube content, Shorts, Reels, and high-retention storytelling.",
+      workCta: "View My Work",
+      contactCta: "Contact Me"
+    },
+    about: {
+      title: "Editorial taste meets retention strategy.",
+      description:
+        "Professional video editor focused on creating engaging content that increases retention and audience engagement.",
+      specialties: [
+        "YouTube Videos",
+        "Shorts",
+        "Reels",
+        "Hooks",
+        "Storytelling Editing",
+        "Pacing",
+        "Retention Editing",
+        "SFX"
+      ]
+    },
+    work: {
+      title: "Long-Form YouTube Edits"
+    },
+    shorts: {
+      title: "High-retention short-form editing for maximum engagement."
+    },
+    services: {
+      title: "Editing systems for creators who publish with intent.",
+      cards: [
+        {
+          title: "YouTube Editing",
+          points: ["Storytelling", "Retention focused", "SFX"]
+        },
+        {
+          title: "Short Form Content",
+          points: ["Shorts", "Reels", "TikTok"]
+        },
+        {
+          title: "Content Optimization",
+          points: ["Hooks", "Pacing", "Audience retention"]
+        }
+      ]
+    },
+    contact: {
+      title: "Let's Work Together",
+      copy: "Copy",
+      copied: "Copied",
+      blocked: "Blocked",
+      copyLabel: "Copy"
+    },
+    footer: {
+      role: "Video Editor | Content Creator"
+    }
+  },
+  pt: {
+    language: {
+      english: "English",
+      portuguese: "Português",
+      selectorLabel: "Alterar idioma do site"
+    },
+    nav: [
+      { label: "Sobre", href: "#about" },
+      { label: "Vídeos", href: "#work" },
+      { label: "Shorts", href: "#shorts" },
+      { label: "Serviços", href: "#services" },
+      { label: "Contato", href: "#contact" }
+    ],
+    audio: {
+      label: "Música",
+      on: "Ativar música",
+      off: "Desativar música",
+      volume: "Volume da música"
+    },
+    hero: {
+      title: "Ajudando Criadores a Transformar Atenção em Crescimento",
+      description:
+        "Editor de vídeo profissional especializado em YouTube, Shorts, Reels e storytelling com alta retenção.",
+      workCta: "Ver Trabalhos",
+      contactCta: "Entrar em Contato"
+    },
+    about: {
+      title: "Olhar editorial com estratégia de retenção.",
+      description:
+        "Editor de vídeo profissional focado em criar conteúdos envolventes que aumentam a retenção e o engajamento da audiência.",
+      specialties: [
+        "Vídeos YouTube",
+        "Shorts",
+        "Reels",
+        "Ganchos",
+        "Edição de Storytelling",
+        "Ritmo",
+        "Edição de Retenção",
+        "SFX"
+      ]
+    },
+    work: {
+      title: "Edições Long-Form para YouTube"
+    },
+    shorts: {
+      title: "Edição short-form de alta retenção para máximo engajamento."
+    },
+    services: {
+      title: "Sistemas de edição para criadores que publicam com intenção.",
+      cards: [
+        {
+          title: "Edição para YouTube",
+          points: ["Storytelling", "Foco em retenção", "SFX"]
+        },
+        {
+          title: "Conteúdo Short Form",
+          points: ["Shorts", "Reels", "TikTok"]
+        },
+        {
+          title: "Otimização de Conteúdo",
+          points: ["Ganchos", "Ritmo", "Retenção de audiência"]
+        }
+      ]
+    },
+    contact: {
+      title: "Vamos Trabalhar Juntos",
+      copy: "Copiar",
+      copied: "Copiado",
+      blocked: "Bloqueado",
+      copyLabel: "Copiar"
+    },
+    footer: {
+      role: "Editor de Vídeo | Criador de Conteúdo"
+    }
+  }
+} as const;
+
+type CopyDeck = (typeof translations)[Language];
 
 function DiscordIcon({ className }: { className?: string }) {
   return (
@@ -184,6 +325,50 @@ function Logo() {
   );
 }
 
+function LanguageToggle({
+  copy,
+  language,
+  onLanguageChange
+}: {
+  copy: CopyDeck;
+  language: Language;
+  onLanguageChange: (language: Language) => void;
+}) {
+  const options: Array<{ value: Language; label: string; shortLabel: string }> = [
+    { value: "en", label: copy.language.english, shortLabel: "EN" },
+    { value: "pt", label: copy.language.portuguese, shortLabel: "PT" }
+  ];
+
+  return (
+    <div
+      className="inline-flex shrink-0 rounded-lg border border-white/12 bg-white/[0.055] p-1 shadow-glass"
+      role="group"
+      aria-label={copy.language.selectorLabel}
+    >
+      {options.map((option) => {
+        const active = language === option.value;
+
+        return (
+          <button
+            key={option.value}
+            type="button"
+            onClick={() => onLanguageChange(option.value)}
+            className={`rounded-md px-2.5 py-2 text-[11px] font-semibold transition sm:px-3 sm:text-xs ${
+              active
+                ? "bg-gradient-to-r from-cobalt to-violet text-white shadow-neon"
+                : "text-white/62 hover:text-white"
+            }`}
+            aria-pressed={active}
+          >
+            <span className="sm:hidden">{option.shortLabel}</span>
+            <span className="hidden sm:inline">{option.label}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 function ParticleField() {
   const particles = useMemo(
     () =>
@@ -233,7 +418,7 @@ function useMediaQuery(query: string) {
   return matches;
 }
 
-function AmbientAudio() {
+function AmbientAudio({ copy }: { copy: CopyDeck }) {
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(0.8);
   const [musicDucked, setMusicDucked] = useState(false);
@@ -505,10 +690,10 @@ function AmbientAudio() {
           }
         }}
         className="inline-flex items-center gap-1.5"
-        aria-label={playing ? "Turn music off" : "Turn music on"}
+        aria-label={playing ? copy.audio.off : copy.audio.on}
       >
         {playing ? <Volume2 className="h-3.5 w-3.5 text-cobalt" /> : <VolumeX className="h-3.5 w-3.5 text-cobalt" />}
-        <span className="hidden sm:inline">Music</span>
+        <span className="hidden sm:inline">{copy.audio.label}</span>
       </button>
       <div className="hidden max-h-0 overflow-hidden transition-all duration-200 group-hover:max-h-12 sm:grid">
         <label className="mt-2 flex items-center gap-2 text-[10px] text-white/55">
@@ -521,7 +706,7 @@ function AmbientAudio() {
             value={volume}
             onChange={(event) => updateVolume(Number(event.target.value))}
             className="h-1 w-24 accent-cobalt"
-            aria-label="Music volume"
+            aria-label={copy.audio.volume}
           />
         </label>
       </div>
@@ -643,11 +828,19 @@ function FloatingTimelineElements() {
   );
 }
 
-function Hero() {
+function Hero({
+  copy,
+  language,
+  onLanguageChange
+}: {
+  copy: CopyDeck;
+  language: Language;
+  onLanguageChange: (language: Language) => void;
+}) {
   return (
     <section id="top" className="relative isolate min-h-screen overflow-hidden px-5 pb-16 pt-6 sm:px-8 sm:pb-20">
       <ParticleField />
-      <div className="mx-auto flex max-w-7xl items-center justify-between py-2">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 py-2">
         <Logo />
         <nav className="hidden items-center gap-7 text-sm text-white/64 md:flex">
           {[
@@ -658,33 +851,33 @@ function Hero() {
             { label: "Contact", href: "#contact" }
           ].map((item) => (
             <a key={item.label} href={item.href} className="transition hover:text-white">
-              {item.label}
+              {copy.nav.find((navItem) => navItem.href === item.href)?.label ?? item.label}
             </a>
           ))}
         </nav>
+        <LanguageToggle copy={copy} language={language} onLanguageChange={onLanguageChange} />
       </div>
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-10 pt-14 sm:gap-12 sm:pt-16 lg:grid-cols-[1fr_0.9fr] lg:pt-20">
         <div className="relative z-10">
           <h1 className="neon-text max-w-4xl font-display text-[3rem] font-bold leading-[0.98] text-white min-[390px]:text-[3.35rem] sm:text-7xl lg:text-8xl">
-            Helping Creators Turn Attention Into Growth
+            {copy.hero.title}
           </h1>
           <p className="mt-7 max-w-2xl text-lg leading-8 text-white/70">
-            Professional Video Editor specialized in YouTube content, Shorts, Reels,
-            and high-retention storytelling.
+            {copy.hero.description}
           </p>
           <div className="mt-9 flex flex-col gap-4 sm:flex-row">
             <a
               href="#work"
               className="magnetic inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-cobalt to-violet px-6 py-4 font-semibold text-white shadow-neon"
             >
-              View My Work <ArrowRight className="h-4 w-4" />
+              {copy.hero.workCta} <ArrowRight className="h-4 w-4" />
             </a>
             <a
               href="#contact"
               className="magnetic inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 bg-white/[0.06] px-6 py-4 font-semibold text-white hover:border-cobalt/50"
             >
-              Contact Me
+              {copy.hero.contactCta}
             </a>
           </div>
         </div>
@@ -716,33 +909,21 @@ function Hero() {
   );
 }
 
-function About() {
-  const specialties = [
-    "YouTube Videos",
-    "Shorts",
-    "Reels",
-    "Hooks",
-    "Storytelling Editing",
-    "Pacing",
-    "Retention Editing",
-    "SFX"
-  ];
-
+function About({ copy }: { copy: CopyDeck }) {
   return (
     <section id="about" className="px-5 py-20 sm:px-8 sm:py-24">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.8fr_1fr]">
         <div>
           <h2 className="font-display text-3xl font-bold leading-tight text-white sm:text-6xl">
-            Editorial taste meets retention strategy.
+            {copy.about.title}
           </h2>
         </div>
         <div className="glass rounded-lg p-5 sm:p-8">
           <p className="text-lg leading-8 text-white/72">
-            Professional video editor focused on creating engaging content that
-            increases retention and audience engagement.
+            {copy.about.description}
           </p>
           <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-4">
-            {specialties.map((item) => (
+            {copy.about.specialties.map((item) => (
               <span
                 key={item}
                 className="inline-flex min-h-14 w-full items-center justify-center rounded-full border border-white/12 bg-white/[0.055] px-3 py-2 text-center text-sm leading-tight text-white/76 sm:px-4"
@@ -757,7 +938,7 @@ function About() {
   );
 }
 
-function ParabolicCarousel() {
+function ParabolicCarousel({ copy }: { copy: CopyDeck }) {
   const [paused, setPaused] = useState(false);
   const [active, setActive] = useState<string | null>(null);
   const [phase, setPhase] = useState(0);
@@ -789,7 +970,7 @@ function ParabolicCarousel() {
         <div className="mb-12 flex flex-col justify-between gap-5 md:flex-row md:items-end">
           <div>
             <h2 className="font-display text-3xl font-bold leading-tight text-white sm:text-6xl">
-              Long-Form YouTube Edits
+              {copy.work.title}
             </h2>
           </div>
         </div>
@@ -872,13 +1053,13 @@ function ParabolicCarousel() {
   );
 }
 
-function Shorts() {
+function Shorts({ copy }: { copy: CopyDeck }) {
   return (
     <section id="shorts" className="px-5 py-20 sm:px-8 sm:py-24">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 max-w-3xl">
           <h2 className="font-display text-3xl font-bold leading-tight text-white sm:text-6xl">
-            High-retention short-form editing for maximum engagement.
+            {copy.shorts.title}
           </h2>
         </div>
         <div className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -904,16 +1085,16 @@ function Shorts() {
   );
 }
 
-function Services() {
+function Services({ copy }: { copy: CopyDeck }) {
   return (
     <section id="services" className="px-5 py-20 sm:px-8 sm:py-24">
       <div className="mx-auto max-w-7xl">
         <h2 className="max-w-3xl font-display text-3xl font-bold leading-tight text-white sm:text-6xl">
-          Editing systems for creators who publish with intent.
+          {copy.services.title}
         </h2>
         <div className="mt-12 grid gap-5 md:grid-cols-3">
-          {services.map((service) => {
-            const Icon = service.icon;
+          {copy.services.cards.map((service, index) => {
+            const Icon = serviceIcons[index];
             return (
               <motion.article
                 key={service.title}
@@ -941,7 +1122,7 @@ function Services() {
   );
 }
 
-function Contact() {
+function Contact({ copy }: { copy: CopyDeck }) {
   const [copied, setCopied] = useState<string | null>(null);
   const [copyBlocked, setCopyBlocked] = useState<string | null>(null);
 
@@ -994,7 +1175,7 @@ function Contact() {
         <div className="grid gap-10 lg:grid-cols-[0.85fr_1fr] lg:items-end">
           <div>
             <h2 className="font-display text-4xl font-bold leading-tight text-white sm:text-7xl">
-              Let&apos;s Work Together
+              {copy.contact.title}
             </h2>
           </div>
           <div className="grid gap-4">
@@ -1028,10 +1209,14 @@ function Contact() {
                       copyValue(contact.value);
                     }}
                     className="magnetic inline-flex items-center justify-center gap-2 rounded-lg border border-white/12 bg-white/[0.045] px-4 py-3 text-sm font-semibold text-white"
-                    aria-label={`Copy ${contact.platform}`}
+                    aria-label={`${copy.contact.copyLabel} ${contact.platform}`}
                   >
                     {copied === contact.value ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                    {copied === contact.value ? "Copied" : copyBlocked === contact.value ? "Blocked" : "Copy"}
+                    {copied === contact.value
+                      ? copy.contact.copied
+                      : copyBlocked === contact.value
+                        ? copy.contact.blocked
+                        : copy.contact.copy}
                   </button>
                 </div>
               );
@@ -1043,13 +1228,13 @@ function Contact() {
   );
 }
 
-function Footer() {
+function Footer({ copy }: { copy: CopyDeck }) {
   return (
     <footer className="border-t border-white/10 px-5 py-10 sm:px-8">
       <div className="mx-auto flex max-w-7xl flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <Logo />
-          <p className="mt-4 text-sm text-white/54">Video Editor | Content Creator</p>
+          <p className="mt-4 text-sm text-white/54">{copy.footer.role}</p>
         </div>
         <div className="flex gap-3">
           {contacts.map((contact) => {
@@ -1074,17 +1259,33 @@ function Footer() {
 }
 
 export default function Home() {
+  const [language, setLanguage] = useState<Language>("en");
+  const copy = translations[language];
+
+  useEffect(() => {
+    const storedLanguage = window.localStorage.getItem("santiago-language");
+
+    if (storedLanguage === "en" || storedLanguage === "pt") {
+      setLanguage(storedLanguage);
+    }
+  }, []);
+
+  function updateLanguage(nextLanguage: Language) {
+    setLanguage(nextLanguage);
+    window.localStorage.setItem("santiago-language", nextLanguage);
+  }
+
   return (
     <main className="noise relative">
-      <AmbientAudio />
+      <AmbientAudio copy={copy} />
       <div className="relative z-10">
-        <Hero />
-        <About />
-        <ParabolicCarousel />
-        <Shorts />
-        <Services />
-        <Contact />
-        <Footer />
+        <Hero copy={copy} language={language} onLanguageChange={updateLanguage} />
+        <About copy={copy} />
+        <ParabolicCarousel copy={copy} />
+        <Shorts copy={copy} />
+        <Services copy={copy} />
+        <Contact copy={copy} />
+        <Footer copy={copy} />
       </div>
     </main>
   );
