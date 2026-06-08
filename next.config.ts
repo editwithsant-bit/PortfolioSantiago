@@ -2,7 +2,8 @@ import type { NextConfig } from "next";
 
 const isGitHubPages = process.env.GITHUB_PAGES === "true";
 const repositoryName = "PortfolioSantiago";
-const basePath = isGitHubPages ? `/${repositoryName}` : "";
+const configuredBasePath = process.env.NEXT_PUBLIC_BASE_PATH;
+const basePath = configuredBasePath ?? (isGitHubPages ? `/${repositoryName}` : "");
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,

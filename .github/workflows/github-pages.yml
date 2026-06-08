@@ -1,5 +1,5 @@
 # Deploy this Next.js portfolio to GitHub Pages.
-# GitHub Pages serves this repository under /PortfolioSantiago, so the build uses a matching base path.
+# This site uses a custom domain, so the build exports static files at the domain root.
 
 name: Deploy GitHub Pages
 
@@ -42,8 +42,8 @@ jobs:
       - name: Build static site
         env:
           GITHUB_PAGES: "true"
-          NEXT_PUBLIC_BASE_PATH: /PortfolioSantiago
-          NEXT_PUBLIC_SITE_URL: https://editwithsant-bit.github.io/PortfolioSantiago
+          NEXT_PUBLIC_BASE_PATH: ""
+          NEXT_PUBLIC_SITE_URL: http://editwithsant.com
         run: npm run build
 
       - name: Keep Next.js static assets available
