@@ -71,6 +71,15 @@ img {
   background-size: 42px 100%;
 }
 
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 .magnetic {
   transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
 }

@@ -217,6 +217,22 @@ function ParticleField() {
   );
 }
 
+function useMediaQuery(query: string) {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(query);
+    const updateMatches = () => setMatches(mediaQuery.matches);
+
+    updateMatches();
+    mediaQuery.addEventListener("change", updateMatches);
+
+    return () => mediaQuery.removeEventListener("change", updateMatches);
+  }, [query]);
+
+  return matches;
+}
+
 function AmbientAudio() {
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(0.8);
@@ -478,7 +494,7 @@ function AmbientAudio() {
   }
 
   return (
-    <div className="group fixed bottom-3 right-3 z-50 rounded-lg border border-white/12 bg-[#050812]/78 px-3 py-2 text-[11px] font-semibold text-white/72 shadow-glass backdrop-blur-xl transition hover:border-cobalt/50 hover:text-white sm:bottom-4 sm:right-4">
+    <div className="group fixed bottom-3 right-3 z-50 rounded-lg border border-white/12 bg-[#050812]/78 px-2.5 py-2 text-[11px] font-semibold text-white/72 shadow-glass backdrop-blur-xl transition hover:border-cobalt/50 hover:text-white sm:bottom-4 sm:right-4 sm:px-3">
       <button
         type="button"
         onClick={() => {
@@ -492,9 +508,9 @@ function AmbientAudio() {
         aria-label={playing ? "Turn music off" : "Turn music on"}
       >
         {playing ? <Volume2 className="h-3.5 w-3.5 text-cobalt" /> : <VolumeX className="h-3.5 w-3.5 text-cobalt" />}
-        Music
+        <span className="hidden sm:inline">Music</span>
       </button>
-      <div className="grid max-h-0 overflow-hidden transition-all duration-200 group-hover:max-h-12">
+      <div className="hidden max-h-0 overflow-hidden transition-all duration-200 group-hover:max-h-12 sm:grid">
         <label className="mt-2 flex items-center gap-2 text-[10px] text-white/55">
           <span>Vol</span>
           <input
@@ -629,7 +645,7 @@ function FloatingTimelineElements() {
 
 function Hero() {
   return (
-    <section id="top" className="relative isolate min-h-screen overflow-hidden px-5 pb-20 pt-6 sm:px-8">
+    <section id="top" className="relative isolate min-h-screen overflow-hidden px-5 pb-16 pt-6 sm:px-8 sm:pb-20">
       <ParticleField />
       <div className="mx-auto flex max-w-7xl items-center justify-between py-2">
         <Logo />
@@ -648,9 +664,9 @@ function Hero() {
         </nav>
       </div>
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-12 pt-16 lg:grid-cols-[1fr_0.9fr] lg:pt-20">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-10 pt-14 sm:gap-12 sm:pt-16 lg:grid-cols-[1fr_0.9fr] lg:pt-20">
         <div className="relative z-10">
-          <h1 className="neon-text max-w-4xl font-display text-5xl font-bold leading-[0.96] text-white sm:text-7xl lg:text-8xl">
+          <h1 className="neon-text max-w-4xl font-display text-[3rem] font-bold leading-[0.98] text-white min-[390px]:text-[3.35rem] sm:text-7xl lg:text-8xl">
             Helping Creators Turn Attention Into Growth
           </h1>
           <p className="mt-7 max-w-2xl text-lg leading-8 text-white/70">
@@ -673,7 +689,7 @@ function Hero() {
           </div>
         </div>
 
-        <div className="relative isolate mx-auto aspect-square w-full max-w-[540px]">
+        <div className="relative isolate mx-auto aspect-square w-full max-w-[360px] sm:max-w-[460px] lg:max-w-[540px]">
           <FloatingTimelineElements />
           <motion.div
             className="absolute inset-[7%] z-20 rounded-full border border-cobalt/55 shadow-[0_0_58px_rgba(19,167,255,0.5),0_0_110px_rgba(141,77,255,0.38)]"
@@ -713,14 +729,14 @@ function About() {
   ];
 
   return (
-    <section id="about" className="px-5 py-24 sm:px-8">
+    <section id="about" className="px-5 py-20 sm:px-8 sm:py-24">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.8fr_1fr]">
         <div>
-          <h2 className="font-display text-4xl font-bold text-white sm:text-6xl">
+          <h2 className="font-display text-3xl font-bold leading-tight text-white sm:text-6xl">
             Editorial taste meets retention strategy.
           </h2>
         </div>
-        <div className="glass rounded-lg p-6 sm:p-8">
+        <div className="glass rounded-lg p-5 sm:p-8">
           <p className="text-lg leading-8 text-white/72">
             Professional video editor focused on creating engaging content that
             increases retention and audience engagement.
@@ -729,7 +745,7 @@ function About() {
             {specialties.map((item) => (
               <span
                 key={item}
-                className="inline-flex h-14 w-full items-center justify-center rounded-full border border-white/12 bg-white/[0.055] px-4 py-2 text-center text-sm leading-tight text-white/76"
+                className="inline-flex min-h-14 w-full items-center justify-center rounded-full border border-white/12 bg-white/[0.055] px-3 py-2 text-center text-sm leading-tight text-white/76 sm:px-4"
               >
                 {item}
               </span>
@@ -745,10 +761,11 @@ function ParabolicCarousel() {
   const [paused, setPaused] = useState(false);
   const [active, setActive] = useState<string | null>(null);
   const [phase, setPhase] = useState(0);
+  const isDesktop = useMediaQuery("(min-width: 768px)");
   const videos = featuredVideos;
 
   useEffect(() => {
-    if (paused) {
+    if (paused || !isDesktop) {
       return;
     }
 
@@ -764,18 +781,37 @@ function ParabolicCarousel() {
 
     frame = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(frame);
-  }, [paused]);
+  }, [isDesktop, paused]);
 
   return (
-    <section id="work" className="overflow-hidden px-5 py-24 sm:px-8">
+    <section id="work" className="overflow-hidden px-5 py-20 sm:px-8 sm:py-24">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 flex flex-col justify-between gap-5 md:flex-row md:items-end">
           <div>
-            <h2 className="font-display text-4xl font-bold text-white sm:text-6xl">
+            <h2 className="font-display text-3xl font-bold leading-tight text-white sm:text-6xl">
               Long-Form YouTube Edits
             </h2>
           </div>
         </div>
+        {!isDesktop ? (
+          <div className="no-scrollbar flex max-w-full snap-x gap-4 overflow-x-auto pb-4">
+            {videos.map((video) => (
+              <article
+                key={video.youtubeId}
+                className="w-[82vw] max-w-[340px] shrink-0 snap-center overflow-hidden rounded-lg border border-white/12 bg-white/[0.05] shadow-glass"
+              >
+                <iframe
+                  className="aspect-video w-full"
+                  src={`https://www.youtube.com/embed/${video.youtubeId}?rel=0&modestbranding=1&playsinline=1`}
+                  title={video.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  loading="lazy"
+                />
+              </article>
+            ))}
+          </div>
+        ) : (
         <div className="relative h-[620px] overflow-hidden rounded-lg border border-white/10 bg-black/20 timeline-scan">
           <div aria-hidden="true" className="absolute left-1/2 top-[86%] h-[820px] w-[1420px] -translate-x-1/2 rounded-full border border-cobalt/20 shadow-[0_0_60px_rgba(19,167,255,0.08)]" />
           <div aria-hidden="true" className="absolute left-1/2 top-[92%] h-[660px] w-[1180px] -translate-x-1/2 rounded-full border border-violet/20" />
@@ -830,6 +866,7 @@ function ParabolicCarousel() {
             })}
           </div>
         </div>
+        )}
       </div>
     </section>
   );
@@ -837,10 +874,10 @@ function ParabolicCarousel() {
 
 function Shorts() {
   return (
-    <section id="shorts" className="px-5 py-24 sm:px-8">
+    <section id="shorts" className="px-5 py-20 sm:px-8 sm:py-24">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 max-w-3xl">
-          <h2 className="font-display text-4xl font-bold text-white sm:text-6xl">
+          <h2 className="font-display text-3xl font-bold leading-tight text-white sm:text-6xl">
             High-retention short-form editing for maximum engagement.
           </h2>
         </div>
@@ -848,7 +885,7 @@ function Shorts() {
           {shortVideos.map((video) => (
             <motion.article
               key={video.title}
-              className="group relative overflow-hidden rounded-lg border border-white/12 bg-white/[0.045] shadow-glass"
+              className="group relative mx-auto w-full max-w-[300px] overflow-hidden rounded-lg border border-white/12 bg-white/[0.045] shadow-glass sm:max-w-none"
               whileHover={{ y: -8, scale: 1.02 }}
             >
               <iframe
@@ -869,9 +906,9 @@ function Shorts() {
 
 function Services() {
   return (
-    <section id="services" className="px-5 py-24 sm:px-8">
+    <section id="services" className="px-5 py-20 sm:px-8 sm:py-24">
       <div className="mx-auto max-w-7xl">
-        <h2 className="max-w-3xl font-display text-4xl font-bold text-white sm:text-6xl">
+        <h2 className="max-w-3xl font-display text-3xl font-bold leading-tight text-white sm:text-6xl">
           Editing systems for creators who publish with intent.
         </h2>
         <div className="mt-12 grid gap-5 md:grid-cols-3">
@@ -880,7 +917,7 @@ function Services() {
             return (
               <motion.article
                 key={service.title}
-                className="glass rounded-lg p-7"
+                className="glass rounded-lg p-6 sm:p-7"
                 whileHover={{ y: -8 }}
               >
                 <div className="mb-8 grid h-12 w-12 place-items-center rounded-lg bg-gradient-to-br from-cobalt to-violet shadow-neon">
@@ -952,11 +989,11 @@ function Contact() {
   }
 
   return (
-    <section id="contact" className="px-5 py-24 sm:px-8">
+    <section id="contact" className="px-5 py-20 sm:px-8 sm:py-24">
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-10 lg:grid-cols-[0.85fr_1fr] lg:items-end">
           <div>
-            <h2 className="font-display text-5xl font-bold text-white sm:text-7xl">
+            <h2 className="font-display text-4xl font-bold leading-tight text-white sm:text-7xl">
               Let&apos;s Work Together
             </h2>
           </div>
