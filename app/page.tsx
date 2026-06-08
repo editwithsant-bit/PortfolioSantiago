@@ -95,13 +95,14 @@ const contacts = [
   }
 ];
 
-type Language = "en" | "pt";
+type Language = "en" | "pt" | "es";
 
 const translations = {
   en: {
     language: {
       english: "English",
       portuguese: "Português",
+      spanish: "Español",
       selectorLabel: "Change site language"
     },
     nav: [
@@ -177,6 +178,7 @@ const translations = {
     language: {
       english: "English",
       portuguese: "Português",
+      spanish: "Español",
       selectorLabel: "Alterar idioma do site"
     },
     nav: [
@@ -246,6 +248,82 @@ const translations = {
     },
     footer: {
       role: "Editor de Vídeo | Criador de Conteúdo"
+    }
+  },
+  es: {
+    language: {
+      english: "English",
+      portuguese: "Português",
+      spanish: "Español",
+      selectorLabel: "Cambiar idioma del sitio"
+    },
+    nav: [
+      { label: "Acerca", href: "#about" },
+      { label: "Videos", href: "#work" },
+      { label: "Shorts", href: "#shorts" },
+      { label: "Servicios", href: "#services" },
+      { label: "Contacto", href: "#contact" }
+    ],
+    audio: {
+      label: "Música",
+      on: "Activar música",
+      off: "Desactivar música",
+      volume: "Volumen de la música"
+    },
+    hero: {
+      title: "Ayudando a Creadores a Transformar Atención en Crecimiento",
+      description:
+        "Editor de video profesional especializado en contenido de YouTube, Shorts, Reels y storytelling de alta retención.",
+      workCta: "Ver Trabajos",
+      contactCta: "Contactar"
+    },
+    about: {
+      title: "Criterio editorial con estrategia de retención.",
+      description:
+        "Editor de video profesional enfocado en crear contenido atractivo que aumenta la retención y el engagement de la audiencia.",
+      specialties: [
+        "Videos de YouTube",
+        "Shorts",
+        "Reels",
+        "Ganchos",
+        "Edición de Storytelling",
+        "Ritmo",
+        "Edición de Retención",
+        "SFX"
+      ]
+    },
+    work: {
+      title: "Ediciones Long-Form para YouTube"
+    },
+    shorts: {
+      title: "Edición short-form de alta retención para máxima interacción."
+    },
+    services: {
+      title: "Sistemas de edición para creadores que publican con intención.",
+      cards: [
+        {
+          title: "Edición para YouTube",
+          points: ["Storytelling", "Enfoque en retención", "SFX"]
+        },
+        {
+          title: "Contenido Short Form",
+          points: ["Shorts", "Reels", "TikTok"]
+        },
+        {
+          title: "Optimización de Contenido",
+          points: ["Ganchos", "Ritmo", "Retención de audiencia"]
+        }
+      ]
+    },
+    contact: {
+      title: "Trabajemos Juntos",
+      copy: "Copiar",
+      copied: "Copiado",
+      blocked: "Bloqueado",
+      copyLabel: "Copiar"
+    },
+    footer: {
+      role: "Editor de Video | Creador de Contenido"
     }
   }
 } as const;
@@ -336,7 +414,8 @@ function LanguageToggle({
 }) {
   const options: Array<{ value: Language; label: string; shortLabel: string }> = [
     { value: "en", label: copy.language.english, shortLabel: "EN" },
-    { value: "pt", label: copy.language.portuguese, shortLabel: "PT" }
+    { value: "pt", label: copy.language.portuguese, shortLabel: "PT" },
+    { value: "es", label: copy.language.spanish, shortLabel: "ES" }
   ];
 
   return (
@@ -1265,7 +1344,7 @@ export default function Home() {
   useEffect(() => {
     const storedLanguage = window.localStorage.getItem("santiago-language");
 
-    if (storedLanguage === "en" || storedLanguage === "pt") {
+    if (storedLanguage === "en" || storedLanguage === "pt" || storedLanguage === "es") {
       setLanguage(storedLanguage);
     }
   }, []);
