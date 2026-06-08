@@ -1,0 +1,17 @@
+<svg width="900" height="1100" viewBox="0 0 900 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="1100" fill="#03040B"/>
+  <ellipse cx="450" cy="520" rx="290" ry="326" fill="url(#body)" opacity=".88"/>
+  <circle cx="450" cy="430" r="170" fill="url(#face)"/>
+  <path d="M222 910c30-170 136-270 228-270s198 100 228 270H222Z" fill="url(#jacket)"/>
+  <path d="M288 307c54-92 173-139 276-79 79 46 112 130 95 218-44-65-92-96-145-95-79 2-133-22-226-44Z" fill="#0B1228"/>
+  <path d="M296 462c30 93 86 140 154 140s124-47 154-140c-44 34-95 50-154 50s-110-16-154-50Z" fill="#121A35" opacity=".6"/>
+  <circle cx="450" cy="488" r="285" stroke="url(#ring)" stroke-width="9" opacity=".95"/>
+  <circle cx="450" cy="488" r="322" stroke="url(#ring2)" stroke-width="2" opacity=".55"/>
+  <defs>
+    <linearGradient id="body" x1="190" y1="238" x2="700" y2="812" gradientUnits="userSpaceOnUse"><stop stop-color="#103A70"/><stop offset=".52" stop-color="#100D2A"/><stop offset="1" stop-color="#071126"/></linearGradient>
+    <linearGradient id="face" x1="300" y1="260" x2="590" y2="590" gradientUnits="userSpaceOnUse"><stop stop-color="#17264C"/><stop offset="1" stop-color="#0B1024"/></linearGradient>
+    <linearGradient id="jacket" x1="225" y1="666" x2="680" y2="980" gradientUnits="userSpaceOnUse"><stop stop-color="#0D244B"/><stop offset=".48" stop-color="#070A16"/><stop offset="1" stop-color="#21114A"/></linearGradient>
+    <linearGradient id="ring" x1="170" y1="184" x2="728" y2="788" gradientUnits="userSpaceOnUse"><stop stop-color="#13A7FF"/><stop offset="1" stop-color="#8D4DFF"/></linearGradient>
+    <linearGradient id="ring2" x1="150" y1="154" x2="760" y2="842" gradientUnits="userSpaceOnUse"><stop stop-color="#B268FF"/><stop offset="1" stop-color="#13A7FF"/></linearGradient>
+  </defs>
+</svg>

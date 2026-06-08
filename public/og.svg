@@ -1,0 +1,12 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#03040B"/>
+  <circle cx="925" cy="315" r="230" fill="#13A7FF" opacity=".16"/>
+  <circle cx="1015" cy="245" r="180" fill="#8D4DFF" opacity=".18"/>
+  <rect x="72" y="72" width="1056" height="486" rx="28" fill="white" fill-opacity=".055" stroke="white" stroke-opacity=".13"/>
+  <circle cx="922" cy="315" r="160" stroke="url(#g)" stroke-width="8"/>
+  <text x="140" y="202" fill="#E8F1FF" font-family="Arial, sans-serif" font-size="86" font-weight="700">SANTIAGO</text>
+  <text x="140" y="292" fill="#13A7FF" font-family="Arial, sans-serif" font-size="38" font-weight="700">Helping Creators Turn Attention Into Growth</text>
+  <text x="140" y="368" fill="#B8C5DB" font-family="Arial, sans-serif" font-size="30">Edit with Intent | Video Editor</text>
+  <text x="882" y="350" fill="#E8F1FF" font-family="Arial, sans-serif" font-size="120" font-weight="700">S</text>
+  <defs><linearGradient id="g" x1="760" y1="140" x2="1080" y2="490" gradientUnits="userSpaceOnUse"><stop stop-color="#13A7FF"/><stop offset="1" stop-color="#8D4DFF"/></linearGradient></defs>
+</svg>
