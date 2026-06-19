@@ -1023,7 +1023,6 @@ function About({ copy }: { copy: CopyDeck }) {
 
 function ParabolicCarousel({ copy }: { copy: CopyDeck }) {
   const [paused, setPaused] = useState(false);
-  const [active, setActive] = useState<string | null>(null);
   const [phase, setPhase] = useState(0);
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const videos = featuredVideos;
@@ -1095,14 +1094,8 @@ function ParabolicCarousel({ copy }: { copy: CopyDeck }) {
               return (
                 <motion.div
                   key={id}
-                  onMouseEnter={() => {
-                    setPaused(true);
-                    setActive(id);
-                  }}
-                  onMouseLeave={() => {
-                    setPaused(false);
-                    setActive(null);
-                  }}
+                  onMouseEnter={() => setPaused(true)}
+                  onMouseLeave={() => setPaused(false)}
                   className="absolute left-1/2 top-[445px]"
                   style={{
                     x,
@@ -1116,14 +1109,31 @@ function ParabolicCarousel({ copy }: { copy: CopyDeck }) {
                     className="group w-[380px] -translate-x-1/2 overflow-hidden rounded-lg border border-white/12 bg-white/[0.05] shadow-glass"
                     style={{ rotate, scale }}
                   >
-                    <iframe
-                      className="aspect-video h-full w-full opacity-85 transition group-hover:opacity-100"
-                      src={`https://www.youtube.com/embed/${video.youtubeId}?rel=0&modestbranding=1&playsinline=1`}
-                      title={video.title}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                      loading="lazy"
-                    />
+                    <a
+                      href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="relative block aspect-video overflow-hidden"
+                      aria-label={`Open ${video.title} on YouTube`}
+                      onFocus={() => setPaused(true)}
+                      onBlur={() => setPaused(false)}
+                    >
+                      <img
+                        src={`https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg`}
+                        alt=""
+                        className="h-full w-full object-cover opacity-85 transition duration-300 group-hover:scale-105 group-hover:opacity-100"
+                        loading="lazy"
+                      />
+                      <span className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/10" />
+                      <span className="absolute left-4 top-4 rounded-md border border-white/12 bg-black/55 px-3 py-1 text-xs font-semibold text-white/80">
+                        {video.title}
+                      </span>
+                      <span className="absolute inset-0 grid place-items-center">
+                        <span className="grid h-16 w-16 place-items-center rounded-full bg-cobalt text-white shadow-neon transition group-hover:scale-110">
+                          <Play className="ml-1 h-7 w-7 fill-white" />
+                        </span>
+                      </span>
+                    </a>
                   </motion.article>
                 </motion.div>
               );
