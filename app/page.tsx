@@ -20,6 +20,10 @@ const assetPath = (path: string) => `${basePath}${path}`;
 
 const featuredVideos = [
   {
+    title: "Featured YouTube Edit",
+    youtubeId: "PGMf5yXKISk"
+  },
+  {
     title: "Kodak: O Futuro que Destruiu um Império",
     youtubeId: "pXXc9D6f8ik"
   },
