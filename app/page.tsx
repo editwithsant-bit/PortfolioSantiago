@@ -1022,7 +1022,28 @@ function About({ copy }: { copy: CopyDeck }) {
 }
 
 function ParabolicCarousel({ copy }: { copy: CopyDeck }) {
+  const [paused, setPaused] = useState(false);
+  const [phase, setPhase] = useState(0);
   const videos = featuredVideos;
+
+  useEffect(() => {
+    if (paused) {
+      return;
+    }
+
+    let frame = 0;
+    let lastTime = performance.now();
+
+    function loop(time: number) {
+      const delta = (time - lastTime) / 1000;
+      lastTime = time;
+      setPhase((current) => (current + delta * 0.018) % 1);
+      frame = requestAnimationFrame(loop);
+    }
+
+    frame = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(frame);
+  }, [paused]);
 
   return (
     <section id="work" className="overflow-hidden px-5 py-20 sm:px-8 sm:py-24">
@@ -1034,10 +1055,17 @@ function ParabolicCarousel({ copy }: { copy: CopyDeck }) {
             </h2>
           </div>
         </div>
-        <div className="portfolio-carousel relative overflow-hidden rounded-lg border border-white/10 bg-black/20 py-6 timeline-scan">
+        <div
+          className="portfolio-carousel relative overflow-hidden rounded-lg border border-white/10 bg-black/20 py-6 timeline-scan"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
           <div aria-hidden="true" className="absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-[#03040b] to-transparent sm:w-32" />
           <div aria-hidden="true" className="absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-[#03040b] to-transparent sm:w-32" />
-          <div className="portfolio-carousel-track flex w-max gap-4 px-4 sm:gap-6 sm:px-6">
+          <div
+            className="portfolio-carousel-track flex w-max gap-4 px-4 sm:gap-6 sm:px-6"
+            style={{ transform: `translateX(-${phase * 50}%)` }}
+          >
             {[0, 1].map((group) => (
               <div
                 key={group}
@@ -1056,6 +1084,8 @@ function ParabolicCarousel({ copy }: { copy: CopyDeck }) {
                       tabIndex={group === 1 ? -1 : undefined}
                       className="relative block aspect-video overflow-hidden"
                       aria-label={`Open ${video.title} on YouTube`}
+                      onFocus={() => setPaused(true)}
+                      onBlur={() => setPaused(false)}
                     >
                       <img
                         src={`https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg`}
