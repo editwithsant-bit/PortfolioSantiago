@@ -1022,29 +1022,7 @@ function About({ copy }: { copy: CopyDeck }) {
 }
 
 function ParabolicCarousel({ copy }: { copy: CopyDeck }) {
-  const [paused, setPaused] = useState(false);
-  const [phase, setPhase] = useState(0);
-  const isDesktop = useMediaQuery("(min-width: 768px)");
   const videos = featuredVideos;
-
-  useEffect(() => {
-    if (paused || !isDesktop) {
-      return;
-    }
-
-    let frame = 0;
-    let lastTime = performance.now();
-
-    function loop(time: number) {
-      const delta = (time - lastTime) / 1000;
-      lastTime = time;
-      setPhase((current) => (current + delta * 0.011) % 1);
-      frame = requestAnimationFrame(loop);
-    }
-
-    frame = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(frame);
-  }, [isDesktop, paused]);
 
   return (
     <section id="work" className="overflow-hidden px-5 py-20 sm:px-8 sm:py-24">
@@ -1056,67 +1034,28 @@ function ParabolicCarousel({ copy }: { copy: CopyDeck }) {
             </h2>
           </div>
         </div>
-        {!isDesktop ? (
-          <div className="no-scrollbar flex max-w-full snap-x gap-4 overflow-x-auto pb-4">
-            {videos.map((video) => (
-              <article
-                key={video.youtubeId}
-                className="w-[82vw] max-w-[340px] shrink-0 snap-center overflow-hidden rounded-lg border border-white/12 bg-white/[0.05] shadow-glass"
+        <div className="portfolio-carousel relative overflow-hidden rounded-lg border border-white/10 bg-black/20 py-6 timeline-scan">
+          <div aria-hidden="true" className="absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-[#03040b] to-transparent sm:w-32" />
+          <div aria-hidden="true" className="absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-[#03040b] to-transparent sm:w-32" />
+          <div className="portfolio-carousel-track flex w-max gap-4 px-4 sm:gap-6 sm:px-6">
+            {[0, 1].map((group) => (
+              <div
+                key={group}
+                className="flex gap-4 sm:gap-6"
+                aria-hidden={group === 1}
               >
-                <iframe
-                  className="aspect-video w-full"
-                  src={`https://www.youtube.com/embed/${video.youtubeId}?rel=0&modestbranding=1&playsinline=1`}
-                  title={video.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  loading="lazy"
-                />
-              </article>
-            ))}
-          </div>
-        ) : (
-        <div className="relative h-[620px] overflow-hidden rounded-lg border border-white/10 bg-black/20 timeline-scan">
-          <div aria-hidden="true" className="absolute left-1/2 top-[86%] h-[820px] w-[1420px] -translate-x-1/2 rounded-full border border-cobalt/20 shadow-[0_0_60px_rgba(19,167,255,0.08)]" />
-          <div aria-hidden="true" className="absolute left-1/2 top-[92%] h-[660px] w-[1180px] -translate-x-1/2 rounded-full border border-violet/20" />
-          <div aria-hidden="true" className="absolute left-1/2 top-[96%] h-16 w-16 -translate-x-1/2 rounded-full bg-cobalt/20 blur-2xl" />
-          <div className="absolute inset-0 [mask-image:linear-gradient(90deg,transparent_0%,black_12%,black_88%,transparent_100%)]">
-            {videos.map((video, index) => {
-              const progress = (index / videos.length + phase) % 1;
-              const angle = Math.PI + progress * Math.PI;
-              const arcStrength = Math.sin(progress * Math.PI);
-              const edgeFade = Math.min(1, Math.max(0, Math.min(progress / 0.14, (1 - progress) / 0.14)));
-              const x = Math.cos(angle) * 840;
-              const y = -arcStrength * 245 + (1 - edgeFade) * 42;
-              const scale = 0.82 + arcStrength * 0.16;
-              const opacity = (0.58 + arcStrength * 0.42) * edgeFade;
-              const rotate = (progress - 0.5) * 12;
-              const id = `${video.title}-${index}`;
-              return (
-                <motion.div
-                  key={id}
-                  onMouseEnter={() => setPaused(true)}
-                  onMouseLeave={() => setPaused(false)}
-                  className="absolute left-1/2 top-[445px]"
-                  style={{
-                    x,
-                    y,
-                    opacity,
-                    zIndex: Math.round(arcStrength * 20)
-                  }}
-                  whileHover={{ scale: 1.08, zIndex: 40 }}
-                >
-                  <motion.article
-                    className="group w-[380px] -translate-x-1/2 overflow-hidden rounded-lg border border-white/12 bg-white/[0.05] shadow-glass"
-                    style={{ rotate, scale }}
+                {videos.map((video) => (
+                  <article
+                    key={`${group}-${video.youtubeId}`}
+                    className="group w-[78vw] max-w-[360px] shrink-0 overflow-hidden rounded-lg border border-white/12 bg-white/[0.05] shadow-glass sm:w-[380px]"
                   >
                     <a
                       href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
                       target="_blank"
                       rel="noreferrer"
+                      tabIndex={group === 1 ? -1 : undefined}
                       className="relative block aspect-video overflow-hidden"
                       aria-label={`Open ${video.title} on YouTube`}
-                      onFocus={() => setPaused(true)}
-                      onBlur={() => setPaused(false)}
                     >
                       <img
                         src={`https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg`}
@@ -1124,8 +1063,8 @@ function ParabolicCarousel({ copy }: { copy: CopyDeck }) {
                         className="h-full w-full object-cover opacity-85 transition duration-300 group-hover:scale-105 group-hover:opacity-100"
                         loading="lazy"
                       />
-                      <span className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/10" />
-                      <span className="absolute left-4 top-4 rounded-md border border-white/12 bg-black/55 px-3 py-1 text-xs font-semibold text-white/80">
+                      <span className="absolute inset-0 bg-gradient-to-t from-black/82 via-black/15 to-black/10" />
+                      <span className="absolute left-4 top-4 max-w-[calc(100%-2rem)] rounded-md border border-white/12 bg-black/60 px-3 py-1 text-xs font-semibold leading-tight text-white/86">
                         {video.title}
                       </span>
                       <span className="absolute inset-0 grid place-items-center">
@@ -1134,13 +1073,12 @@ function ParabolicCarousel({ copy }: { copy: CopyDeck }) {
                         </span>
                       </span>
                     </a>
-                  </motion.article>
-                </motion.div>
-              );
-            })}
+                  </article>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
-        )}
       </div>
     </section>
   );

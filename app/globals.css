@@ -71,6 +71,29 @@ img {
   background-size: 42px 100%;
 }
 
+.portfolio-carousel {
+  mask-image: linear-gradient(90deg, transparent 0%, black 9%, black 91%, transparent 100%);
+}
+
+.portfolio-carousel-track {
+  animation: portfolio-marquee 34s linear infinite;
+}
+
+.portfolio-carousel:hover .portfolio-carousel-track,
+.portfolio-carousel:focus-within .portfolio-carousel-track {
+  animation-play-state: paused;
+}
+
+@keyframes portfolio-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
