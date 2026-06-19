@@ -33,7 +33,7 @@ const featuredVideos = [
   },
   {
     title: "Diana Gameplay: Agurin",
-    youtubeId: "RchtjI7tmMo"
+    youtubeId: "30eAiA33ZSU"
   },
   {
     title: "League of Legends Edit",
