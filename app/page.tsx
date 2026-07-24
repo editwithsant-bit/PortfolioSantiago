@@ -25,32 +25,27 @@ const featuredVideos = [
     category: "documentary"
   },
   {
-    title: "Kodak: O Futuro que Destruiu um Império",
+    title: "Make Viral AI Cartoon Videos for YouTube Shorts and TikTok (TRIAL)",
     youtubeId: "pXXc9D6f8ik",
+    category: "talkingHead"
+  },
+  {
+    title: "Diana Gameplay Agurin",
+    youtubeId: "Ae_NlQpOE_8",
+    category: "gameplay"
+  },
+  {
+    title: "Facetas Dentárias Estragam os Dentes?",
+    youtubeId: "30eAiA33ZSU",
+    category: "talkingHead"
+  },
+  {
+    title: "O maior erro da história dos negócios: O caso KODAK",
+    youtubeId: "noiReS6ecTY",
     category: "documentary"
   },
   {
-    title: "Create Your AI Clone",
-    youtubeId: "Ae_NlQpOE_8",
-    category: "talkingHead"
-  },
-  {
-    title: "Diana Gameplay: Agurin",
-    youtubeId: "30eAiA33ZSU",
-    category: "gameplay"
-  },
-  {
-    title: "League of Legends Edit",
-    youtubeId: "q8OcQeZ6SaU",
-    category: "gameplay"
-  },
-  {
-    title: "I'm 40: I Wasted My Life",
-    youtubeId: "noiReS6ecTY",
-    category: "talkingHead"
-  },
-  {
-    title: "Odontologia Hospitalar",
+    title: "ODONTOLOGIA HOSPITALAR: A Especialidade que SALVA VIDAS nos Hospitais",
     youtubeId: "wW4sqQoD124",
     category: "talkingHead"
   }
