@@ -144,7 +144,7 @@ const translations = {
       ]
     },
     clients: {
-      eyebrow: "Featured Client",
+      eyebrow: "Clients",
       title: "YouTube channels shaped through purposeful editing.",
       name: "Order 77",
       handle: "@TheOrder77",
@@ -235,7 +235,7 @@ const translations = {
       ]
     },
     clients: {
-      eyebrow: "Cliente em Destaque",
+      eyebrow: "Clientes",
       title: "Canais do YouTube transformados por uma edição com propósito.",
       name: "Order 77",
       handle: "@TheOrder77",
@@ -326,7 +326,7 @@ const translations = {
       ]
     },
     clients: {
-      eyebrow: "Cliente Destacado",
+      eyebrow: "Clientes",
       title: "Canales de YouTube impulsados por una edición con propósito.",
       name: "Order 77",
       handle: "@TheOrder77",
@@ -1051,17 +1051,20 @@ function About({ copy }: { copy: CopyDeck }) {
 
 function FeaturedClient({ copy }: { copy: CopyDeck }) {
   return (
-    <section id="clients" className="border-y border-white/8 px-5 py-20 sm:px-8 sm:py-24">
+    <section id="clients" className="border-y border-white/8 px-5 py-14 sm:px-8 sm:py-16">
       <div className="mx-auto max-w-7xl">
+        <h2 className="mb-7 text-center font-display text-xs font-semibold uppercase tracking-[0.28em] text-white/46">
+          {copy.clients.eyebrow}
+        </h2>
         <motion.a
           href={featuredClient.url}
           target="_blank"
           rel="noreferrer"
-          className="group mx-auto flex w-full max-w-sm flex-col items-center text-center"
+          className="group mx-auto flex w-full max-w-xs flex-col items-center text-center"
           whileHover={{ y: -6 }}
           aria-label={`${copy.clients.cta}: ${copy.clients.name}`}
         >
-          <div className="grid h-48 w-48 place-items-center rounded-full border border-white/14 bg-black/40 p-1.5 shadow-[0_0_50px_rgba(19,167,255,0.14)] transition duration-300 group-hover:border-cobalt/40 group-hover:shadow-[0_0_62px_rgba(19,167,255,0.24)] sm:h-56 sm:w-56">
+          <div className="grid h-36 w-36 place-items-center rounded-full border border-white/14 bg-black/40 p-1 shadow-[0_0_38px_rgba(19,167,255,0.12)] transition duration-300 group-hover:border-cobalt/40 group-hover:shadow-[0_0_48px_rgba(19,167,255,0.22)] sm:h-40 sm:w-40">
             <div
               role="img"
               aria-label={`${copy.clients.name} channel logo`}
@@ -1070,10 +1073,10 @@ function FeaturedClient({ copy }: { copy: CopyDeck }) {
             />
           </div>
 
-          <h2 className="mt-5 rounded-lg border border-white/12 bg-black/45 px-5 py-2 font-display text-3xl font-semibold text-white shadow-glass">
+          <h3 className="mt-4 rounded-lg border border-white/12 bg-black/45 px-4 py-1.5 font-display text-2xl font-semibold text-white shadow-glass">
             {copy.clients.name}
-          </h2>
-          <p className="mt-2 rounded-md bg-[#10172a] px-4 py-3 text-sm font-semibold text-white/55">
+          </h3>
+          <p className="mt-2 rounded-md bg-[#10172a] px-3.5 py-2 text-xs font-semibold text-white/55">
             {copy.clients.subscribers}
           </p>
         </motion.a>
