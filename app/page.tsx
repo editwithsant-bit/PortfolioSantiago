@@ -21,31 +21,38 @@ const assetPath = (path: string) => `${basePath}${path}`;
 const featuredVideos = [
   {
     title: "Why Ezra Bridger Will Be So IMPORTANT in Ahsoka Season 2",
-    youtubeId: "cBo7O0rneSA"
+    youtubeId: "cBo7O0rneSA",
+    category: "documentary"
   },
   {
     title: "Kodak: O Futuro que Destruiu um Império",
-    youtubeId: "pXXc9D6f8ik"
+    youtubeId: "pXXc9D6f8ik",
+    category: "documentary"
   },
   {
     title: "Create Your AI Clone",
-    youtubeId: "Ae_NlQpOE_8"
+    youtubeId: "Ae_NlQpOE_8",
+    category: "talkingHead"
   },
   {
     title: "Diana Gameplay: Agurin",
-    youtubeId: "30eAiA33ZSU"
+    youtubeId: "30eAiA33ZSU",
+    category: "gameplay"
   },
   {
     title: "League of Legends Edit",
-    youtubeId: "q8OcQeZ6SaU"
+    youtubeId: "q8OcQeZ6SaU",
+    category: "gameplay"
   },
   {
     title: "I'm 40: I Wasted My Life",
-    youtubeId: "noiReS6ecTY"
+    youtubeId: "noiReS6ecTY",
+    category: "talkingHead"
   },
   {
     title: "Odontologia Hospitalar",
-    youtubeId: "wW4sqQoD124"
+    youtubeId: "wW4sqQoD124",
+    category: "talkingHead"
   }
 ];
 
@@ -145,7 +152,12 @@ const translations = {
       ]
     },
     work: {
-      title: "Long-Form YouTube Edits"
+      title: "Long-Form YouTube Edits",
+      categories: {
+        documentary: "Documentary",
+        talkingHead: "Talking Head",
+        gameplay: "Gameplay"
+      }
     },
     shorts: {
       title: "High-retention short-form editing for maximum engagement."
@@ -221,7 +233,12 @@ const translations = {
       ]
     },
     work: {
-      title: "Edições Long-Form para YouTube"
+      title: "Edições Long-Form para YouTube",
+      categories: {
+        documentary: "Documentário",
+        talkingHead: "Talking Head",
+        gameplay: "Gameplay"
+      }
     },
     shorts: {
       title: "Edição short-form de alta retenção para máximo engajamento."
@@ -297,7 +314,12 @@ const translations = {
       ]
     },
     work: {
-      title: "Ediciones Long-Form para YouTube"
+      title: "Ediciones Long-Form para YouTube",
+      categories: {
+        documentary: "Documental",
+        talkingHead: "Talking Head",
+        gameplay: "Gameplay"
+      }
     },
     shorts: {
       title: "Edición short-form de alta retención para máxima interacción."
@@ -483,22 +505,6 @@ function ParticleField() {
       ))}
     </div>
   );
-}
-
-function useMediaQuery(query: string) {
-  const [matches, setMatches] = useState(false);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia(query);
-    const updateMatches = () => setMatches(mediaQuery.matches);
-
-    updateMatches();
-    mediaQuery.addEventListener("change", updateMatches);
-
-    return () => mediaQuery.removeEventListener("change", updateMatches);
-  }, [query]);
-
-  return matches;
 }
 
 function AmbientAudio({ copy }: { copy: CopyDeck }) {
@@ -1021,116 +1027,89 @@ function About({ copy }: { copy: CopyDeck }) {
   );
 }
 
-function ParabolicCarousel({ copy }: { copy: CopyDeck }) {
-  const [paused, setPaused] = useState(false);
-  const [active, setActive] = useState<string | null>(null);
-  const [phase, setPhase] = useState(0);
-  const isDesktop = useMediaQuery("(min-width: 768px)");
-  const videos = featuredVideos;
-
-  useEffect(() => {
-    if (paused || !isDesktop) {
-      return;
+function CategorizedLongForm({ copy }: { copy: CopyDeck }) {
+  const categories = [
+    {
+      key: "documentary",
+      label: copy.work.categories.documentary
+    },
+    {
+      key: "talkingHead",
+      label: copy.work.categories.talkingHead
+    },
+    {
+      key: "gameplay",
+      label: copy.work.categories.gameplay
     }
-
-    let frame = 0;
-    let lastTime = performance.now();
-
-    function loop(time: number) {
-      const delta = (time - lastTime) / 1000;
-      lastTime = time;
-      setPhase((current) => (current + delta * 0.011) % 1);
-      frame = requestAnimationFrame(loop);
-    }
-
-    frame = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(frame);
-  }, [isDesktop, paused]);
+  ] as const;
 
   return (
-    <section id="work" className="overflow-hidden px-5 py-20 sm:px-8 sm:py-24">
+    <section id="work" className="px-5 py-20 sm:px-8 sm:py-24">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-12 flex flex-col justify-between gap-5 md:flex-row md:items-end">
-          <div>
-            <h2 className="font-display text-3xl font-bold leading-tight text-white sm:text-6xl">
-              {copy.work.title}
-            </h2>
-          </div>
+        <div className="mb-14 max-w-4xl">
+          <h2 className="font-display text-3xl font-bold leading-tight text-white sm:text-6xl">
+            {copy.work.title}
+          </h2>
         </div>
-        {!isDesktop ? (
-          <div className="no-scrollbar flex max-w-full snap-x gap-4 overflow-x-auto pb-4">
-            {videos.map((video) => (
-              <article
-                key={video.youtubeId}
-                className="w-[82vw] max-w-[340px] shrink-0 snap-center overflow-hidden rounded-lg border border-white/12 bg-white/[0.05] shadow-glass"
+
+        <div className="space-y-16 sm:space-y-20">
+          {categories.map((category, categoryIndex) => {
+            const videos = featuredVideos.filter((video) => video.category === category.key);
+            const sectionId = `long-form-${category.key}`;
+
+            return (
+              <section
+                key={category.key}
+                aria-labelledby={sectionId}
+                className="relative border-t border-white/12 pt-7"
               >
-                <iframe
-                  className="aspect-video w-full"
-                  src={`https://www.youtube.com/embed/${video.youtubeId}?rel=0&modestbranding=1&playsinline=1`}
-                  title={video.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  loading="lazy"
-                />
-              </article>
-            ))}
-          </div>
-        ) : (
-        <div className="relative h-[620px] overflow-hidden rounded-lg border border-white/10 bg-black/20 timeline-scan">
-          <div aria-hidden="true" className="absolute left-1/2 top-[86%] h-[820px] w-[1420px] -translate-x-1/2 rounded-full border border-cobalt/20 shadow-[0_0_60px_rgba(19,167,255,0.08)]" />
-          <div aria-hidden="true" className="absolute left-1/2 top-[92%] h-[660px] w-[1180px] -translate-x-1/2 rounded-full border border-violet/20" />
-          <div aria-hidden="true" className="absolute left-1/2 top-[96%] h-16 w-16 -translate-x-1/2 rounded-full bg-cobalt/20 blur-2xl" />
-          <div className="absolute inset-0 [mask-image:linear-gradient(90deg,transparent_0%,black_12%,black_88%,transparent_100%)]">
-            {videos.map((video, index) => {
-              const progress = (index / videos.length + phase) % 1;
-              const angle = Math.PI + progress * Math.PI;
-              const arcStrength = Math.sin(progress * Math.PI);
-              const edgeFade = Math.min(1, Math.max(0, Math.min(progress / 0.14, (1 - progress) / 0.14)));
-              const x = Math.cos(angle) * 840;
-              const y = -arcStrength * 245 + (1 - edgeFade) * 42;
-              const scale = 0.82 + arcStrength * 0.16;
-              const opacity = (0.58 + arcStrength * 0.42) * edgeFade;
-              const rotate = (progress - 0.5) * 12;
-              const id = `${video.title}-${index}`;
-              return (
-                <motion.div
-                  key={id}
-                  onMouseEnter={() => {
-                    setPaused(true);
-                    setActive(id);
-                  }}
-                  onMouseLeave={() => {
-                    setPaused(false);
-                    setActive(null);
-                  }}
-                  className="absolute left-1/2 top-[445px]"
-                  style={{
-                    x,
-                    y,
-                    opacity,
-                    zIndex: Math.round(arcStrength * 20)
-                  }}
-                  whileHover={{ scale: 1.08, zIndex: 40 }}
-                >
-                  <motion.article
-                    className="group w-[380px] -translate-x-1/2 overflow-hidden rounded-lg border border-white/12 bg-white/[0.05] shadow-glass"
-                    style={{ rotate, scale }}
-                  >
-                    <iframe
-                      className="aspect-video h-full w-full opacity-85 transition group-hover:opacity-100"
-                      src={`https://www.youtube.com/embed/${video.youtubeId}?rel=0&modestbranding=1&playsinline=1`}
-                      title={video.title}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                      loading="lazy"
-                    />
-                  </motion.article>
-                </motion.div>
-              );
-            })}
-          </div>
+                <div className="mb-7 flex items-center justify-between gap-6">
+                  <div className="flex items-center gap-4">
+                    <span
+                      aria-hidden="true"
+                      className="font-display text-sm font-semibold tracking-[0.24em] text-cobalt"
+                    >
+                      {String(categoryIndex + 1).padStart(2, "0")}
+                    </span>
+                    <h3
+                      id={sectionId}
+                      className="font-display text-2xl font-semibold text-white sm:text-4xl"
+                    >
+                      {category.label}
+                    </h3>
+                  </div>
+                  <span className="rounded-full border border-white/12 bg-white/[0.045] px-3 py-1 text-xs font-semibold text-white/55">
+                    {videos.length}
+                  </span>
+                </div>
+
+                <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                  {videos.map((video) => (
+                    <motion.article
+                      key={video.youtubeId}
+                      className="group overflow-hidden rounded-lg border border-white/12 bg-white/[0.045] shadow-glass"
+                      whileHover={{ y: -7 }}
+                    >
+                      <iframe
+                        className="aspect-video w-full opacity-90 transition duration-300 group-hover:opacity-100"
+                        src={`https://www.youtube.com/embed/${video.youtubeId}?rel=0&modestbranding=1&playsinline=1`}
+                        title={video.title}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                        loading="lazy"
+                      />
+                      <div className="border-t border-white/10 px-5 py-4">
+                        <h4 className="font-display text-base font-semibold leading-snug text-white/88">
+                          {video.title}
+                        </h4>
+                      </div>
+                    </motion.article>
+                  ))}
+                </div>
+              </section>
+            );
+          })}
         </div>
-        )}
       </div>
     </section>
   );
@@ -1364,7 +1343,7 @@ export default function Home() {
       <div className="relative z-10">
         <Hero copy={copy} language={language} onLanguageChange={updateLanguage} />
         <About copy={copy} />
-        <ParabolicCarousel copy={copy} />
+        <CategorizedLongForm copy={copy} />
         <Shorts copy={copy} />
         <Services copy={copy} />
         <Contact copy={copy} />
