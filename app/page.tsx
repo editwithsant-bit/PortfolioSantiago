@@ -20,8 +20,8 @@ const assetPath = (path: string) => `${basePath}${path}`;
 
 const featuredVideos = [
   {
-    title: "Featured YouTube Edit",
-    youtubeId: "PGMf5yXKISk"
+    title: "Why Ezra Bridger Will Be So IMPORTANT in Ahsoka Season 2",
+    youtubeId: "cBo7O0rneSA"
   },
   {
     title: "Kodak: O Futuro que Destruiu um Império",
