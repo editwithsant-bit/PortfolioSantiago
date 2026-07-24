@@ -96,6 +96,12 @@ const contacts = [
   }
 ];
 
+const featuredClient = {
+  url: "https://www.youtube.com/@TheOrder77",
+  avatarUrl:
+    "https://yt3.googleusercontent.com/Wr0uYbNUbK0jiYODT0ytUjUZbl4x9L_SohsEbZhBJd943qDphTLEhV9zMlqOf_AxbBXGQEwWTQ=s900-c-k-c0x00ffffff-no-rj"
+};
+
 type Language = "en" | "pt" | "es";
 
 const translations = {
@@ -108,6 +114,7 @@ const translations = {
     },
     nav: [
       { label: "About", href: "#about" },
+      { label: "Clients", href: "#clients" },
       { label: "Videos", href: "#work" },
       { label: "Shorts", href: "#shorts" },
       { label: "Services", href: "#services" },
@@ -140,6 +147,16 @@ const translations = {
         "Retention Editing",
         "SFX"
       ]
+    },
+    clients: {
+      eyebrow: "Featured Client",
+      title: "YouTube channels shaped through purposeful editing.",
+      name: "Order 77",
+      handle: "@TheOrder77",
+      subscribers: "75K+ subscribers",
+      description:
+        "A Star Wars channel built around complete stories, character breakdowns, and long-form documentaries.",
+      cta: "Visit channel"
     },
     work: {
       title: "Long-Form YouTube Edits",
@@ -189,6 +206,7 @@ const translations = {
     },
     nav: [
       { label: "Sobre", href: "#about" },
+      { label: "Clientes", href: "#clients" },
       { label: "Vídeos", href: "#work" },
       { label: "Shorts", href: "#shorts" },
       { label: "Serviços", href: "#services" },
@@ -221,6 +239,16 @@ const translations = {
         "Edição de Retenção",
         "SFX"
       ]
+    },
+    clients: {
+      eyebrow: "Cliente em Destaque",
+      title: "Canais do YouTube transformados por uma edição com propósito.",
+      name: "Order 77",
+      handle: "@TheOrder77",
+      subscribers: "Mais de 75 mil inscritos",
+      description:
+        "Um canal de Star Wars focado em histórias completas, análises de personagens e documentários long-form.",
+      cta: "Visitar canal"
     },
     work: {
       title: "Edições Long-Form para YouTube",
@@ -270,6 +298,7 @@ const translations = {
     },
     nav: [
       { label: "Acerca", href: "#about" },
+      { label: "Clientes", href: "#clients" },
       { label: "Videos", href: "#work" },
       { label: "Shorts", href: "#shorts" },
       { label: "Servicios", href: "#services" },
@@ -302,6 +331,16 @@ const translations = {
         "Edición de Retención",
         "SFX"
       ]
+    },
+    clients: {
+      eyebrow: "Cliente Destacado",
+      title: "Canales de YouTube impulsados por una edición con propósito.",
+      name: "Order 77",
+      handle: "@TheOrder77",
+      subscribers: "Más de 75 mil suscriptores",
+      description:
+        "Un canal de Star Wars centrado en historias completas, análisis de personajes y documentales long-form.",
+      cta: "Visitar canal"
     },
     work: {
       title: "Ediciones Long-Form para YouTube",
@@ -924,6 +963,7 @@ function Hero({
         <nav className="hidden items-center gap-7 text-sm text-white/64 md:flex">
           {[
             { label: "About", href: "#about" },
+            { label: "Clients", href: "#clients" },
             { label: "Vídeos", href: "#work" },
             { label: "Shorts", href: "#shorts" },
             { label: "Services", href: "#services" },
@@ -1012,6 +1052,66 @@ function About({ copy }: { copy: CopyDeck }) {
             ))}
           </div>
         </div>
+      </div>
+    </section>
+  );
+}
+
+function FeaturedClient({ copy }: { copy: CopyDeck }) {
+  return (
+    <section id="clients" className="px-5 py-20 sm:px-8 sm:py-24">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-9 max-w-4xl">
+          <p className="mb-4 font-display text-sm font-semibold uppercase tracking-[0.24em] text-cobalt">
+            {copy.clients.eyebrow}
+          </p>
+          <h2 className="font-display text-3xl font-bold leading-tight text-white sm:text-6xl">
+            {copy.clients.title}
+          </h2>
+        </div>
+
+        <motion.a
+          href={featuredClient.url}
+          target="_blank"
+          rel="noreferrer"
+          className="glass group relative grid min-h-[300px] overflow-hidden rounded-lg p-6 transition hover:border-cobalt/45 sm:p-9 lg:grid-cols-[0.55fr_1fr] lg:items-center lg:gap-10 lg:p-12"
+          whileHover={{ y: -6 }}
+          aria-label={`${copy.clients.cta}: ${copy.clients.name}`}
+        >
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(19,167,255,0.16),transparent_32%),radial-gradient(circle_at_86%_16%,rgba(141,77,255,0.16),transparent_28%)]"
+          />
+
+          <div className="relative mx-auto grid h-44 w-44 place-items-center rounded-full border border-white/16 bg-black/40 p-2 shadow-[0_0_55px_rgba(19,167,255,0.18)] sm:h-52 sm:w-52">
+            <div
+              role="img"
+              aria-label={`${copy.clients.name} channel logo`}
+              className="h-full w-full rounded-full bg-cover bg-center"
+              style={{ backgroundImage: `url("${featuredClient.avatarUrl}")` }}
+            />
+          </div>
+
+          <div className="relative mt-8 text-center lg:mt-0 lg:text-left">
+            <div className="mb-4 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+              <span className="rounded-full border border-cobalt/35 bg-cobalt/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-cobalt">
+                YouTube
+              </span>
+              <span className="text-sm text-white/55">{copy.clients.subscribers}</span>
+            </div>
+            <h3 className="font-display text-4xl font-bold text-white sm:text-6xl">
+              {copy.clients.name}
+            </h3>
+            <p className="mt-2 font-medium text-white/58">{copy.clients.handle}</p>
+            <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-white/68 lg:mx-0 sm:text-lg">
+              {copy.clients.description}
+            </p>
+            <span className="magnetic mt-7 inline-flex items-center gap-2 rounded-lg border border-white/14 bg-white/[0.06] px-5 py-3 font-semibold text-white transition group-hover:border-cobalt/45">
+              {copy.clients.cta}
+              <ArrowRight className="h-4 w-4" />
+            </span>
+          </div>
+        </motion.a>
       </div>
     </section>
   );
@@ -1333,6 +1433,7 @@ export default function Home() {
       <div className="relative z-10">
         <Hero copy={copy} language={language} onLanguageChange={updateLanguage} />
         <About copy={copy} />
+        <FeaturedClient copy={copy} />
         <CategorizedLongForm copy={copy} />
         <Shorts copy={copy} />
         <Services copy={copy} />
