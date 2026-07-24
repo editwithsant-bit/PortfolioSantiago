@@ -6,13 +6,11 @@ import { motion } from "framer-motion";
 import {
   ArrowRight,
   Check,
-  Clapperboard,
   Copy,
   Mail,
   Play,
   Volume2,
-  VolumeX,
-  Zap
+  VolumeX
 } from "lucide-react";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -73,8 +71,6 @@ const shortVideos = [
   }
 ];
 
-const serviceIcons = [Clapperboard, Play, Zap];
-
 const contacts = [
   {
     platform: "Twitter/X",
@@ -117,7 +113,6 @@ const translations = {
       { label: "Clients", href: "#clients" },
       { label: "Videos", href: "#work" },
       { label: "Shorts", href: "#shorts" },
-      { label: "Services", href: "#services" },
       { label: "Contact", href: "#contact" }
     ],
     audio: {
@@ -209,7 +204,6 @@ const translations = {
       { label: "Clientes", href: "#clients" },
       { label: "Vídeos", href: "#work" },
       { label: "Shorts", href: "#shorts" },
-      { label: "Serviços", href: "#services" },
       { label: "Contato", href: "#contact" }
     ],
     audio: {
@@ -301,7 +295,6 @@ const translations = {
       { label: "Clientes", href: "#clients" },
       { label: "Videos", href: "#work" },
       { label: "Shorts", href: "#shorts" },
-      { label: "Servicios", href: "#services" },
       { label: "Contacto", href: "#contact" }
     ],
     audio: {
@@ -966,7 +959,6 @@ function Hero({
             { label: "Clients", href: "#clients" },
             { label: "Vídeos", href: "#work" },
             { label: "Shorts", href: "#shorts" },
-            { label: "Services", href: "#services" },
             { label: "Contact", href: "#contact" }
           ].map((item) => (
             <a key={item.label} href={item.href} className="transition hover:text-white">
@@ -1059,31 +1051,17 @@ function About({ copy }: { copy: CopyDeck }) {
 
 function FeaturedClient({ copy }: { copy: CopyDeck }) {
   return (
-    <section id="clients" className="px-5 py-20 sm:px-8 sm:py-24">
+    <section id="clients" className="border-y border-white/8 px-5 py-20 sm:px-8 sm:py-24">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-9 max-w-4xl">
-          <p className="mb-4 font-display text-sm font-semibold uppercase tracking-[0.24em] text-cobalt">
-            {copy.clients.eyebrow}
-          </p>
-          <h2 className="font-display text-3xl font-bold leading-tight text-white sm:text-6xl">
-            {copy.clients.title}
-          </h2>
-        </div>
-
         <motion.a
           href={featuredClient.url}
           target="_blank"
           rel="noreferrer"
-          className="glass group relative grid min-h-[300px] overflow-hidden rounded-lg p-6 transition hover:border-cobalt/45 sm:p-9 lg:grid-cols-[0.55fr_1fr] lg:items-center lg:gap-10 lg:p-12"
+          className="group mx-auto flex w-full max-w-sm flex-col items-center text-center"
           whileHover={{ y: -6 }}
           aria-label={`${copy.clients.cta}: ${copy.clients.name}`}
         >
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(19,167,255,0.16),transparent_32%),radial-gradient(circle_at_86%_16%,rgba(141,77,255,0.16),transparent_28%)]"
-          />
-
-          <div className="relative mx-auto grid h-44 w-44 place-items-center rounded-full border border-white/16 bg-black/40 p-2 shadow-[0_0_55px_rgba(19,167,255,0.18)] sm:h-52 sm:w-52">
+          <div className="grid h-48 w-48 place-items-center rounded-full border border-white/14 bg-black/40 p-1.5 shadow-[0_0_50px_rgba(19,167,255,0.14)] transition duration-300 group-hover:border-cobalt/40 group-hover:shadow-[0_0_62px_rgba(19,167,255,0.24)] sm:h-56 sm:w-56">
             <div
               role="img"
               aria-label={`${copy.clients.name} channel logo`}
@@ -1092,25 +1070,12 @@ function FeaturedClient({ copy }: { copy: CopyDeck }) {
             />
           </div>
 
-          <div className="relative mt-8 text-center lg:mt-0 lg:text-left">
-            <div className="mb-4 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
-              <span className="rounded-full border border-cobalt/35 bg-cobalt/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-cobalt">
-                YouTube
-              </span>
-              <span className="text-sm text-white/55">{copy.clients.subscribers}</span>
-            </div>
-            <h3 className="font-display text-4xl font-bold text-white sm:text-6xl">
-              {copy.clients.name}
-            </h3>
-            <p className="mt-2 font-medium text-white/58">{copy.clients.handle}</p>
-            <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-white/68 lg:mx-0 sm:text-lg">
-              {copy.clients.description}
-            </p>
-            <span className="magnetic mt-7 inline-flex items-center gap-2 rounded-lg border border-white/14 bg-white/[0.06] px-5 py-3 font-semibold text-white transition group-hover:border-cobalt/45">
-              {copy.clients.cta}
-              <ArrowRight className="h-4 w-4" />
-            </span>
-          </div>
+          <h2 className="mt-5 rounded-lg border border-white/12 bg-black/45 px-5 py-2 font-display text-3xl font-semibold text-white shadow-glass">
+            {copy.clients.name}
+          </h2>
+          <p className="mt-2 rounded-md bg-[#10172a] px-4 py-3 text-sm font-semibold text-white/55">
+            {copy.clients.subscribers}
+          </p>
         </motion.a>
       </div>
     </section>
@@ -1231,43 +1196,6 @@ function Shorts({ copy }: { copy: CopyDeck }) {
               />
             </motion.article>
           ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Services({ copy }: { copy: CopyDeck }) {
-  return (
-    <section id="services" className="px-5 py-20 sm:px-8 sm:py-24">
-      <div className="mx-auto max-w-7xl">
-        <h2 className="max-w-3xl font-display text-3xl font-bold leading-tight text-white sm:text-6xl">
-          {copy.services.title}
-        </h2>
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
-          {copy.services.cards.map((service, index) => {
-            const Icon = serviceIcons[index];
-            return (
-              <motion.article
-                key={service.title}
-                className="glass rounded-lg p-6 sm:p-7"
-                whileHover={{ y: -8 }}
-              >
-                <div className="mb-8 grid h-12 w-12 place-items-center rounded-lg bg-gradient-to-br from-cobalt to-violet shadow-neon">
-                  <Icon className="h-6 w-6" />
-                </div>
-                <h3 className="font-display text-2xl font-semibold">{service.title}</h3>
-                <ul className="mt-5 space-y-3 text-white/66">
-                  {service.points.map((point) => (
-                    <li key={point} className="flex items-center gap-3">
-                      <Check className="h-4 w-4 text-cobalt" />
-                      {point}
-                    </li>
-                  ))}
-                </ul>
-              </motion.article>
-            );
-          })}
         </div>
       </div>
     </section>
@@ -1433,10 +1361,9 @@ export default function Home() {
       <div className="relative z-10">
         <Hero copy={copy} language={language} onLanguageChange={updateLanguage} />
         <About copy={copy} />
-        <FeaturedClient copy={copy} />
         <CategorizedLongForm copy={copy} />
         <Shorts copy={copy} />
-        <Services copy={copy} />
+        <FeaturedClient copy={copy} />
         <Contact copy={copy} />
         <Footer copy={copy} />
       </div>
