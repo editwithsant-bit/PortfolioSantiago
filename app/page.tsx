@@ -105,20 +105,20 @@ const translations = {
     hero: {
       title: "Helping Creators Turn Attention Into Growth",
       description:
-        "Professional Video Editor specialized in long-form YouTube content and high-retention storytelling.",
+        "Professional Video Editor specialized in long-form YouTube content, thoughtful storytelling, and purposeful pacing.",
       workCta: "View My Work",
       contactCta: "Contact Me"
     },
     about: {
-      title: "Editorial taste meets retention strategy.",
+      title: "Editorial taste meets purposeful storytelling.",
       description:
-        "Professional video editor focused on creating engaging content that increases retention and audience engagement.",
+        "Professional video editor focused on shaping clear, engaging stories that connect with the right audience.",
       specialties: [
         "YouTube Videos",
         "Hooks",
         "Storytelling Editing",
         "Pacing",
-        "Retention Editing",
+        "Narrative Structure",
         "SFX"
       ]
     },
@@ -147,7 +147,7 @@ const translations = {
       cards: [
         {
           title: "YouTube Editing",
-          points: ["Storytelling", "Retention focused", "SFX"]
+          points: ["Storytelling", "Purposeful pacing", "SFX"]
         },
         {
           title: "Long-Form Content",
@@ -155,7 +155,7 @@ const translations = {
         },
         {
           title: "Content Optimization",
-          points: ["Hooks", "Pacing", "Audience retention"]
+          points: ["Hooks", "Pacing", "Narrative clarity"]
         }
       ]
     },
@@ -192,20 +192,20 @@ const translations = {
     hero: {
       title: "Ajudando Criadores a Transformar Atenção em Crescimento",
       description:
-        "Editor de vídeo profissional especializado em conteúdo long-form para YouTube e storytelling com alta retenção.",
+        "Editor de vídeo profissional especializado em conteúdo long-form para YouTube, storytelling cuidadoso e ritmo com propósito.",
       workCta: "Ver Trabalhos",
       contactCta: "Entrar em Contato"
     },
     about: {
-      title: "Olhar editorial com estratégia de retenção.",
+      title: "Olhar editorial com storytelling intencional.",
       description:
-        "Editor de vídeo profissional focado em criar conteúdos envolventes que aumentam a retenção e o engajamento da audiência.",
+        "Editor de vídeo profissional focado em construir histórias claras e envolventes que conectam com o público certo.",
       specialties: [
         "Vídeos YouTube",
         "Ganchos",
         "Edição de Storytelling",
         "Ritmo",
-        "Edição de Retenção",
+        "Estrutura Narrativa",
         "SFX"
       ]
     },
@@ -234,7 +234,7 @@ const translations = {
       cards: [
         {
           title: "Edição para YouTube",
-          points: ["Storytelling", "Foco em retenção", "SFX"]
+          points: ["Storytelling", "Ritmo com propósito", "SFX"]
         },
         {
           title: "Conteúdo Long-Form",
@@ -242,7 +242,7 @@ const translations = {
         },
         {
           title: "Otimização de Conteúdo",
-          points: ["Ganchos", "Ritmo", "Retenção de audiência"]
+          points: ["Ganchos", "Ritmo", "Clareza narrativa"]
         }
       ]
     },
@@ -279,20 +279,20 @@ const translations = {
     hero: {
       title: "Ayudando a Creadores a Transformar Atención en Crecimiento",
       description:
-        "Editor de video profesional especializado en contenido long-form para YouTube y storytelling de alta retención.",
+        "Editor de video profesional especializado en contenido long-form para YouTube, storytelling cuidado y ritmo con intención.",
       workCta: "Ver Trabajos",
       contactCta: "Contactar"
     },
     about: {
-      title: "Criterio editorial con estrategia de retención.",
+      title: "Criterio editorial con storytelling intencional.",
       description:
-        "Editor de video profesional enfocado en crear contenido atractivo que aumenta la retención y el engagement de la audiencia.",
+        "Editor de video profesional enfocado en construir historias claras y atractivas que conectan con la audiencia adecuada.",
       specialties: [
         "Videos de YouTube",
         "Ganchos",
         "Edición de Storytelling",
         "Ritmo",
-        "Edición de Retención",
+        "Estructura Narrativa",
         "SFX"
       ]
     },
@@ -321,7 +321,7 @@ const translations = {
       cards: [
         {
           title: "Edición para YouTube",
-          points: ["Storytelling", "Enfoque en retención", "SFX"]
+          points: ["Storytelling", "Ritmo con intención", "SFX"]
         },
         {
           title: "Contenido Long-Form",
@@ -329,7 +329,7 @@ const translations = {
         },
         {
           title: "Optimización de Contenido",
-          points: ["Ganchos", "Ritmo", "Retención de audiencia"]
+          points: ["Ganchos", "Ritmo", "Claridad narrativa"]
         }
       ]
     },
