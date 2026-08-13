@@ -65,11 +65,20 @@ const contacts = [
   }
 ];
 
-const featuredClient = {
-  url: "https://www.youtube.com/@TheOrder77",
-  avatarUrl:
-    "https://yt3.googleusercontent.com/Wr0uYbNUbK0jiYODT0ytUjUZbl4x9L_SohsEbZhBJd943qDphTLEhV9zMlqOf_AxbBXGQEwWTQ=s900-c-k-c0x00ffffff-no-rj"
-};
+const featuredClients = [
+  {
+    key: "order77",
+    url: "https://www.youtube.com/@TheOrder77",
+    avatarUrl:
+      "https://yt3.googleusercontent.com/Wr0uYbNUbK0jiYODT0ytUjUZbl4x9L_SohsEbZhBJd943qDphTLEhV9zMlqOf_AxbBXGQEwWTQ=s900-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    key: "pedroCooke",
+    url: "https://www.youtube.com/@pecooke",
+    avatarUrl:
+      "https://yt3.googleusercontent.com/pw-cAGw8MlRaMrE_QG-WYmWtQR02wDhwwaAXXczKcZdwwOrDM-lOjkS2_ayvSStDNgyYOAE_=s900-c-k-c0x00ffffff-no-rj"
+  }
+] as const;
 
 type Language = "en" | "pt" | "es";
 
@@ -119,6 +128,8 @@ const translations = {
       name: "Order 77",
       handle: "@TheOrder77",
       subscribers: "75K+ subscribers",
+      pedroName: "Pedro Cooke",
+      pedroSubscribers: "195K+ subscribers",
       description:
         "A Star Wars channel built around complete stories, character breakdowns, and long-form documentaries.",
       cta: "Visit channel"
@@ -204,6 +215,8 @@ const translations = {
       name: "Order 77",
       handle: "@TheOrder77",
       subscribers: "Mais de 75 mil inscritos",
+      pedroName: "Pedro Cooke",
+      pedroSubscribers: "Mais de 195 mil inscritos",
       description:
         "Um canal de Star Wars focado em histórias completas, análises de personagens e documentários long-form.",
       cta: "Visitar canal"
@@ -289,6 +302,8 @@ const translations = {
       name: "Order 77",
       handle: "@TheOrder77",
       subscribers: "Más de 75 mil suscriptores",
+      pedroName: "Pedro Cooke",
+      pedroSubscribers: "Más de 195 mil suscriptores",
       description:
         "Un canal de Star Wars centrado en historias completas, análisis de personajes y documentales long-form.",
       cta: "Visitar canal"
@@ -1010,30 +1025,43 @@ function FeaturedClient({ copy }: { copy: CopyDeck }) {
         <h2 className="mb-7 text-center font-display text-xs font-semibold uppercase tracking-[0.28em] text-white/46">
           {copy.clients.eyebrow}
         </h2>
-        <motion.a
-          href={featuredClient.url}
-          target="_blank"
-          rel="noreferrer"
-          className="group mx-auto flex w-full max-w-xs flex-col items-center text-center"
-          whileHover={{ y: -6 }}
-          aria-label={`${copy.clients.cta}: ${copy.clients.name}`}
-        >
-          <div className="grid h-36 w-36 place-items-center rounded-full border border-white/14 bg-black/40 p-1 shadow-[0_0_38px_rgba(19,167,255,0.12)] transition duration-300 group-hover:border-cobalt/40 group-hover:shadow-[0_0_48px_rgba(19,167,255,0.22)] sm:h-40 sm:w-40">
-            <div
-              role="img"
-              aria-label={`${copy.clients.name} channel logo`}
-              className="h-full w-full rounded-full bg-cover bg-center"
-              style={{ backgroundImage: `url("${featuredClient.avatarUrl}")` }}
-            />
-          </div>
+        <div className="mx-auto grid max-w-2xl gap-10 sm:grid-cols-2 sm:gap-16">
+          {featuredClients.map((client) => {
+            const name = client.key === "order77" ? copy.clients.name : copy.clients.pedroName;
+            const subscribers =
+              client.key === "order77"
+                ? copy.clients.subscribers
+                : copy.clients.pedroSubscribers;
 
-          <h3 className="mt-4 rounded-lg border border-white/12 bg-black/45 px-4 py-1.5 font-display text-2xl font-semibold text-white shadow-glass">
-            {copy.clients.name}
-          </h3>
-          <p className="mt-2 rounded-md bg-[#10172a] px-3.5 py-2 text-xs font-semibold text-white/55">
-            {copy.clients.subscribers}
-          </p>
-        </motion.a>
+            return (
+              <motion.a
+                key={client.key}
+                href={client.url}
+                target="_blank"
+                rel="noreferrer"
+                className="group mx-auto flex w-full max-w-xs flex-col items-center text-center"
+                whileHover={{ y: -6 }}
+                aria-label={`${copy.clients.cta}: ${name}`}
+              >
+                <div className="grid h-36 w-36 place-items-center rounded-full border border-white/14 bg-black/40 p-1 shadow-[0_0_38px_rgba(19,167,255,0.12)] transition duration-300 group-hover:border-cobalt/40 group-hover:shadow-[0_0_48px_rgba(19,167,255,0.22)] sm:h-40 sm:w-40">
+                  <div
+                    role="img"
+                    aria-label={`${name} channel logo`}
+                    className="h-full w-full rounded-full bg-cover bg-center"
+                    style={{ backgroundImage: `url("${client.avatarUrl}")` }}
+                  />
+                </div>
+
+                <h3 className="mt-4 rounded-lg border border-white/12 bg-black/45 px-4 py-1.5 font-display text-2xl font-semibold text-white shadow-glass">
+                  {name}
+                </h3>
+                <p className="mt-2 rounded-md bg-[#10172a] px-3.5 py-2 text-xs font-semibold text-white/55">
+                  {subscribers}
+                </p>
+              </motion.a>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
