@@ -23,8 +23,8 @@ const featuredVideos = [
     category: "documentary"
   },
   {
-    title: "Make Viral AI Cartoon Videos for YouTube Shorts and TikTok (TRIAL)",
-    youtubeId: "pXXc9D6f8ik",
+    title: "Simplifique sua vida - O luxo de viver com menos ruído",
+    youtubeId: "iSfN15V8_l0",
     category: "talkingHead"
   },
   {
@@ -40,11 +40,6 @@ const featuredVideos = [
   {
     title: "O maior erro da história dos negócios: O caso KODAK",
     youtubeId: "noiReS6ecTY",
-    category: "documentary"
-  },
-  {
-    title: "Simplifique sua vida - O luxo de viver com menos ruído",
-    youtubeId: "iSfN15V8_l0",
     category: "documentary"
   }
 ];
