@@ -44,33 +44,6 @@ const featuredVideos = [
   }
 ];
 
-const shortVideos = [
-  {
-    title: "Lancheira Saudável",
-    youtubeId: "EehuuC-DYEM"
-  },
-  {
-    title: "Marvel Rivals",
-    youtubeId: "4T6sZv_nz_Y"
-  },
-  {
-    title: "Your Heroes Are Full of Shit",
-    youtubeId: "LsHC1xAXc1M"
-  },
-  {
-    title: "Iman Ghadzi Edit",
-    youtubeId: "NKMlHVvfCO0"
-  },
-  {
-    title: "Agurin Short",
-    youtubeId: "O4NOYzLIfVA"
-  },
-  {
-    title: "Criança e Pasta de Dente",
-    youtubeId: "UQbpf2iJ_Vo"
-  }
-];
-
 const contacts = [
   {
     platform: "Twitter/X",
@@ -112,7 +85,6 @@ const translations = {
       { label: "About", href: "#about" },
       { label: "Clients", href: "#clients" },
       { label: "Videos", href: "#work" },
-      { label: "Shorts", href: "#shorts" },
       { label: "Contact", href: "#contact" }
     ],
     audio: {
@@ -124,7 +96,7 @@ const translations = {
     hero: {
       title: "Helping Creators Turn Attention Into Growth",
       description:
-        "Professional Video Editor specialized in YouTube content, Shorts, Reels, and high-retention storytelling.",
+        "Professional Video Editor specialized in long-form YouTube content and high-retention storytelling.",
       workCta: "View My Work",
       contactCta: "Contact Me"
     },
@@ -134,8 +106,6 @@ const translations = {
         "Professional video editor focused on creating engaging content that increases retention and audience engagement.",
       specialties: [
         "YouTube Videos",
-        "Shorts",
-        "Reels",
         "Hooks",
         "Storytelling Editing",
         "Pacing",
@@ -161,9 +131,6 @@ const translations = {
         gameplay: "Gameplay"
       }
     },
-    shorts: {
-      title: "High-retention short-form editing for maximum engagement."
-    },
     services: {
       title: "Editing systems for creators who publish with intent.",
       cards: [
@@ -172,8 +139,8 @@ const translations = {
           points: ["Storytelling", "Retention focused", "SFX"]
         },
         {
-          title: "Short Form Content",
-          points: ["Shorts", "Reels", "TikTok"]
+          title: "Long-Form Content",
+          points: ["Documentaries", "Talking Head", "Gameplay"]
         },
         {
           title: "Content Optimization",
@@ -203,7 +170,6 @@ const translations = {
       { label: "Sobre", href: "#about" },
       { label: "Clientes", href: "#clients" },
       { label: "Vídeos", href: "#work" },
-      { label: "Shorts", href: "#shorts" },
       { label: "Contato", href: "#contact" }
     ],
     audio: {
@@ -215,7 +181,7 @@ const translations = {
     hero: {
       title: "Ajudando Criadores a Transformar Atenção em Crescimento",
       description:
-        "Editor de vídeo profissional especializado em YouTube, Shorts, Reels e storytelling com alta retenção.",
+        "Editor de vídeo profissional especializado em conteúdo long-form para YouTube e storytelling com alta retenção.",
       workCta: "Ver Trabalhos",
       contactCta: "Entrar em Contato"
     },
@@ -225,8 +191,6 @@ const translations = {
         "Editor de vídeo profissional focado em criar conteúdos envolventes que aumentam a retenção e o engajamento da audiência.",
       specialties: [
         "Vídeos YouTube",
-        "Shorts",
-        "Reels",
         "Ganchos",
         "Edição de Storytelling",
         "Ritmo",
@@ -252,9 +216,6 @@ const translations = {
         gameplay: "Gameplay"
       }
     },
-    shorts: {
-      title: "Edição short-form de alta retenção para máximo engajamento."
-    },
     services: {
       title: "Sistemas de edição para criadores que publicam com intenção.",
       cards: [
@@ -263,8 +224,8 @@ const translations = {
           points: ["Storytelling", "Foco em retenção", "SFX"]
         },
         {
-          title: "Conteúdo Short Form",
-          points: ["Shorts", "Reels", "TikTok"]
+          title: "Conteúdo Long-Form",
+          points: ["Documentários", "Talking Head", "Gameplay"]
         },
         {
           title: "Otimização de Conteúdo",
@@ -294,7 +255,6 @@ const translations = {
       { label: "Acerca", href: "#about" },
       { label: "Clientes", href: "#clients" },
       { label: "Videos", href: "#work" },
-      { label: "Shorts", href: "#shorts" },
       { label: "Contacto", href: "#contact" }
     ],
     audio: {
@@ -306,7 +266,7 @@ const translations = {
     hero: {
       title: "Ayudando a Creadores a Transformar Atención en Crecimiento",
       description:
-        "Editor de video profesional especializado en contenido de YouTube, Shorts, Reels y storytelling de alta retención.",
+        "Editor de video profesional especializado en contenido long-form para YouTube y storytelling de alta retención.",
       workCta: "Ver Trabajos",
       contactCta: "Contactar"
     },
@@ -316,8 +276,6 @@ const translations = {
         "Editor de video profesional enfocado en crear contenido atractivo que aumenta la retención y el engagement de la audiencia.",
       specialties: [
         "Videos de YouTube",
-        "Shorts",
-        "Reels",
         "Ganchos",
         "Edición de Storytelling",
         "Ritmo",
@@ -343,9 +301,6 @@ const translations = {
         gameplay: "Gameplay"
       }
     },
-    shorts: {
-      title: "Edición short-form de alta retención para máxima interacción."
-    },
     services: {
       title: "Sistemas de edición para creadores que publican con intención.",
       cards: [
@@ -354,8 +309,8 @@ const translations = {
           points: ["Storytelling", "Enfoque en retención", "SFX"]
         },
         {
-          title: "Contenido Short Form",
-          points: ["Shorts", "Reels", "TikTok"]
+          title: "Contenido Long-Form",
+          points: ["Documentales", "Talking Head", "Gameplay"]
         },
         {
           title: "Optimización de Contenido",
@@ -958,7 +913,6 @@ function Hero({
             { label: "About", href: "#about" },
             { label: "Clients", href: "#clients" },
             { label: "Vídeos", href: "#work" },
-            { label: "Shorts", href: "#shorts" },
             { label: "Contact", href: "#contact" }
           ].map((item) => (
             <a key={item.label} href={item.href} className="transition hover:text-white">
@@ -1173,38 +1127,6 @@ function CategorizedLongForm({ copy }: { copy: CopyDeck }) {
   );
 }
 
-function Shorts({ copy }: { copy: CopyDeck }) {
-  return (
-    <section id="shorts" className="px-5 py-20 sm:px-8 sm:py-24">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-12 max-w-3xl">
-          <h2 className="font-display text-3xl font-bold leading-tight text-white sm:text-6xl">
-            {copy.shorts.title}
-          </h2>
-        </div>
-        <div className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {shortVideos.map((video) => (
-            <motion.article
-              key={video.title}
-              className="group relative mx-auto w-full max-w-[300px] overflow-hidden rounded-lg border border-white/12 bg-white/[0.045] shadow-glass sm:max-w-none"
-              whileHover={{ y: -8, scale: 1.02 }}
-            >
-              <iframe
-                className="aspect-[9/16] w-full opacity-75 transition group-hover:opacity-100"
-                src={`https://www.youtube.com/embed/${video.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${video.youtubeId}&controls=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1`}
-                title={video.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                loading="lazy"
-              />
-            </motion.article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function Contact({ copy }: { copy: CopyDeck }) {
   const [copied, setCopied] = useState<string | null>(null);
   const [copyBlocked, setCopyBlocked] = useState<string | null>(null);
@@ -1365,7 +1287,6 @@ export default function Home() {
         <Hero copy={copy} language={language} onLanguageChange={updateLanguage} />
         <About copy={copy} />
         <CategorizedLongForm copy={copy} />
-        <Shorts copy={copy} />
         <FeaturedClient copy={copy} />
         <Contact copy={copy} />
         <Footer copy={copy} />
