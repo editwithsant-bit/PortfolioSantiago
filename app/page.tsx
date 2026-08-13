@@ -987,7 +987,7 @@ function About({ copy }: { copy: CopyDeck }) {
           <p className="text-lg leading-8 text-white/72">
             {copy.about.description}
           </p>
-          <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-4">
+          <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-3">
             {copy.about.specialties.map((item) => (
               <span
                 key={item}
@@ -1285,9 +1285,9 @@ export default function Home() {
       <AmbientAudio copy={copy} />
       <div className="relative z-10">
         <Hero copy={copy} language={language} onLanguageChange={updateLanguage} />
-        <About copy={copy} />
         <CategorizedLongForm copy={copy} />
         <FeaturedClient copy={copy} />
+        <About copy={copy} />
         <Contact copy={copy} />
         <Footer copy={copy} />
       </div>
