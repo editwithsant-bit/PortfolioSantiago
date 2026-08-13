@@ -1103,7 +1103,7 @@ function CategorizedLongForm({ copy }: { copy: CopyDeck }) {
                 aria-labelledby={sectionId}
                 className="relative border-t border-white/12 pt-7"
               >
-                <div className="mb-7 flex items-center justify-between gap-6">
+                <div className="mb-7 flex items-center gap-6">
                   <div className="flex items-center gap-4">
                     <span
                       aria-hidden="true"
@@ -1118,9 +1118,6 @@ function CategorizedLongForm({ copy }: { copy: CopyDeck }) {
                       {category.label}
                     </h3>
                   </div>
-                  <span className="rounded-full border border-white/12 bg-white/[0.045] px-3 py-1 text-xs font-semibold text-white/55">
-                    {videos.length}
-                  </span>
                 </div>
 
                 <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
