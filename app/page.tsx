@@ -76,7 +76,7 @@ const featuredClients = [
     key: "pedroCooke",
     url: "https://www.youtube.com/@pecooke",
     avatarUrl:
-      "https://yt3.googleusercontent.com/pw-cAGw8MlRaMrE_QG-WYmWtQR02wDhwwaAXXczKcZdwwOrDM-lOjkS2_ayvSStDNgyYOAE_=s900-c-k-c0x00ffffff-no-rj"
+      "https://yt3.googleusercontent.com/4b1Rr82xwop3p25Sf7qAtefTDctkqFYyOFkLtxySridoBn4hk33JoIPA3CRd_fyvykrrGclF=s900-c-k-c0x00ffffff-no-rj"
   },
   {
     key: "rafaTv",
@@ -135,7 +135,7 @@ const translations = {
       handle: "@TheOrder77",
       subscribers: "75K+ subscribers",
       pedroName: "Pedro Cooke",
-      pedroSubscribers: "195K+ subscribers",
+      pedroSubscribers: "201K+ subscribers",
       rafaName: "RafaTV BR",
       rafaSubscribers: "9.5K+ subscribers",
       description:
@@ -224,7 +224,7 @@ const translations = {
       handle: "@TheOrder77",
       subscribers: "Mais de 75 mil inscritos",
       pedroName: "Pedro Cooke",
-      pedroSubscribers: "Mais de 195 mil inscritos",
+      pedroSubscribers: "Mais de 201 mil inscritos",
       rafaName: "RafaTV BR",
       rafaSubscribers: "Mais de 9,5 mil inscritos",
       description:
@@ -313,7 +313,7 @@ const translations = {
       handle: "@TheOrder77",
       subscribers: "Más de 75 mil suscriptores",
       pedroName: "Pedro Cooke",
-      pedroSubscribers: "Más de 195 mil suscriptores",
+      pedroSubscribers: "Más de 201 mil suscriptores",
       rafaName: "RafaTV BR",
       rafaSubscribers: "Más de 9,5 mil suscriptores",
       description:
