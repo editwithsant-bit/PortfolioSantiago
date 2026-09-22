@@ -77,6 +77,12 @@ const featuredClients = [
     url: "https://www.youtube.com/@pecooke",
     avatarUrl:
       "https://yt3.googleusercontent.com/pw-cAGw8MlRaMrE_QG-WYmWtQR02wDhwwaAXXczKcZdwwOrDM-lOjkS2_ayvSStDNgyYOAE_=s900-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    key: "rafaTv",
+    url: "https://www.youtube.com/@CanalRafaTV",
+    avatarUrl:
+      "https://yt3.googleusercontent.com/AnQuiqh7iJHFQWIHAV35zFykw1iyss6wfm-qJk9jgJ3JEGXoH6ma8Y_bFxGiniUgweNryfUNpg=s900-c-k-c0x00ffffff-no-rj"
   }
 ] as const;
 
@@ -130,6 +136,8 @@ const translations = {
       subscribers: "75K+ subscribers",
       pedroName: "Pedro Cooke",
       pedroSubscribers: "195K+ subscribers",
+      rafaName: "RafaTV BR",
+      rafaSubscribers: "9.5K+ subscribers",
       description:
         "A Star Wars channel built around complete stories, character breakdowns, and long-form documentaries.",
       cta: "Visit channel"
@@ -217,6 +225,8 @@ const translations = {
       subscribers: "Mais de 75 mil inscritos",
       pedroName: "Pedro Cooke",
       pedroSubscribers: "Mais de 195 mil inscritos",
+      rafaName: "RafaTV BR",
+      rafaSubscribers: "Mais de 9,5 mil inscritos",
       description:
         "Um canal de Star Wars focado em histórias completas, análises de personagens e documentários long-form.",
       cta: "Visitar canal"
@@ -304,6 +314,8 @@ const translations = {
       subscribers: "Más de 75 mil suscriptores",
       pedroName: "Pedro Cooke",
       pedroSubscribers: "Más de 195 mil suscriptores",
+      rafaName: "RafaTV BR",
+      rafaSubscribers: "Más de 9,5 mil suscriptores",
       description:
         "Un canal de Star Wars centrado en historias completas, análisis de personajes y documentales long-form.",
       cta: "Visitar canal"
@@ -1025,13 +1037,20 @@ function FeaturedClient({ copy }: { copy: CopyDeck }) {
         <h2 className="mb-7 text-center font-display text-xs font-semibold uppercase tracking-[0.28em] text-white/46">
           {copy.clients.eyebrow}
         </h2>
-        <div className="mx-auto grid max-w-2xl gap-10 sm:grid-cols-2 sm:gap-16">
+        <div className="mx-auto grid max-w-4xl gap-10 sm:grid-cols-2 sm:gap-12 md:grid-cols-3">
           {featuredClients.map((client) => {
-            const name = client.key === "order77" ? copy.clients.name : copy.clients.pedroName;
+            const name =
+              client.key === "order77"
+                ? copy.clients.name
+                : client.key === "pedroCooke"
+                  ? copy.clients.pedroName
+                  : copy.clients.rafaName;
             const subscribers =
               client.key === "order77"
                 ? copy.clients.subscribers
-                : copy.clients.pedroSubscribers;
+                : client.key === "pedroCooke"
+                  ? copy.clients.pedroSubscribers
+                  : copy.clients.rafaSubscribers;
 
             return (
               <motion.a
