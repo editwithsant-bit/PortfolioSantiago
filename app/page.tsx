@@ -33,8 +33,8 @@ const featuredVideos = [
     category: "gameplay"
   },
   {
-    title: "Facetas Dentárias Estragam os Dentes?",
-    youtubeId: "30eAiA33ZSU",
+    title: "Seja Homem - Amadureça rápido!",
+    youtubeId: "cjL3i0mq6Ms",
     category: "talkingHead"
   },
   {
