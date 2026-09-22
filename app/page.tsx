@@ -28,8 +28,8 @@ const featuredVideos = [
     category: "talkingHead"
   },
   {
-    title: "Diana Gameplay Agurin",
-    youtubeId: "Ae_NlQpOE_8",
+    title: "F1 26 OPEN LOBBY 😂 TENTE NÃO RIR DOS TRAPALHÕES NO MULTIPLAYER EM MONZA!",
+    youtubeId: "e2e_C-ED5cw",
     category: "gameplay"
   },
   {
