@@ -41,6 +41,11 @@ const featuredVideos = [
     title: "O maior erro da história dos negócios: O caso KODAK",
     youtubeId: "noiReS6ecTY",
     category: "documentary"
+  },
+  {
+    title: "The Fallout Universe's Best-Kept Secret: Vault-Tec's True Intentions",
+    youtubeId: "PGMf5yXKISk",
+    category: "documentary"
   }
 ];
 
